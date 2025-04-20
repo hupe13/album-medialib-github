@@ -1,4 +1,4 @@
-# Photonic album from Media Library Github
+# Photonic Album from Media Library Github
 
 Contributors: hupe13    
 Tags: photonic, media library  
