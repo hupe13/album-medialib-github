@@ -2,7 +2,8 @@
 /**
  * Plugin Name:       Photonic Album from Media Library Github
  * Description:       Display Photonic album from photos in Media Library by path
- * Version:           250420
+ * Update URI:        https://github.com/hupe13/album-photonic-github
+ * Version:           250421
  * Requires PHP:      8.2
  * Requires Plugins:  photonic
  * Author:            hupe13
@@ -28,7 +29,7 @@ function photonic_album_function( $atts ) {
 		global $wpdb;
 		$image = '%' . $atts['path'] . '%';
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
-		$results = $wpdb->get_results( $wpdb->prepare( 'SELECT post_id FROM wp_postmeta WHERE meta_value LIKE %s', $image ) );
+		$results = $wpdb->get_results( $wpdb->prepare( "SELECT post_id FROM $wpdb->postmeta WHERE meta_value LIKE %s", $image ) );
 		if ( count( $results ) > 0 ) {
 			$shortcode = '[photonic ids="';
 			foreach ( $results as $result ) {

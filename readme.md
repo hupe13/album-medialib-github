@@ -3,7 +3,7 @@
 Contributors: hupe13    
 Tags: photonic, media library  
 Tested up to: 6.8  
-Stable tag: 250420     
+Stable tag: 250421     
 Requires at least: 6.8     
 Requires PHP: 8.2     
 License: GPLv2 or later
@@ -30,9 +30,9 @@ The plugin is not ready yet. Please also check manually whether updates are avai
 - Pick Your Layout.
 - Configure Your Layout.
 - In window "Your Gallery" select the shortcode and paste this into a Shortcode block.
-- Change the shortcode from
+- Change the shortcode (or your Custom Shortcode) from
 ```
-[photonic ids='....' main_size='...' tile_size='...' style='...' ....]
+[gallery ids='....' main_size='...' tile_size='...' style='...' ....]
 ```
 to
 ```
@@ -42,6 +42,10 @@ to
 
 ## Changelog
 
-### 250420
+### 250420 - deleted
 
 - initial release
+
+### 250421
+
+- many corrections: typos, wp_postmeta table, update

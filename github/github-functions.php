@@ -12,49 +12,27 @@ require_once ABSPATH . 'wp-admin/includes/plugin.php';
 
 // Repos on Github
 function leafext_get_repos() {
+	$releases  = array(
+		'extensions-leaflet-map' => false,
+		'extensions-leaflet-map-testing' => false,
+	);
 	$git_repos = array();
-	// this plugin
-	$git_repos['leafext-update-github']  = array(
-		'url'     => 'https://github.com/hupe13/leafext-update-github/',
-		'local'   => WP_PLUGIN_DIR . '/' . leafext_github_dir( 'leafext-update-github' ) . '/leafext-update-github.php',
-		'release' => true,
-	);
-	$git_repos['extensions-leaflet-map'] = array(
-		'url'     => 'https://github.com/hupe13/extensions-leaflet-map-github/',
-		'local'   => WP_PLUGIN_DIR . '/' . leafext_github_dir( 'extensions-leaflet-map' ) . '/extensions-leaflet-map.php',
-		'release' => false,
-	);
-	$git_repos['dsgvo-leaflet-map']      = array(
-		'url'     => 'https://github.com/hupe13/dsgvo-leaflet-map-github/',
-		'local'   => WP_PLUGIN_DIR . '/' . leafext_github_dir( 'dsgvo-leaflet-map' ) . '/dsgvo-leaflet-map.php',
-		'release' => true,
-	);
-	$git_repos['album-photonic']      = array(
-		'url'     => 'https://github.com/hupe13/album-photonic/',
-		'local'   => WP_PLUGIN_DIR . '/' . leafext_github_dir( 'album-photonic' ) . '/album-photonic.php',
-		'release' => true,
-	);
-	foreach ( $git_repos as $git_repo => $value ) {
-		if ( ! file_exists( $git_repos[ $git_repo ]['local'] ) ) {
-			unset( $git_repos[ $git_repo ] );
+	if ( ! function_exists( 'get_plugins' ) ) {
+		require_once ABSPATH . 'wp-admin/includes/plugin.php';
+	}
+	$all_plugins = get_plugins();
+	foreach ( $all_plugins as $plugin => $plugin_data ) {
+		if ( strpos( $plugin_data['UpdateURI'], 'https://github.com/hupe13/' ) !== false ) {
+			$slug               = basename( $plugin, '.php' );
+			$release            = isset( $releases[ $slug ] ) ? $releases[ $slug ] : true;
+			$git_repos[ $slug ] = array(
+				'url'     => $plugin_data['UpdateURI'],
+				'local'   => WP_PLUGIN_DIR . '/' . $plugin,
+				'release' => $release,
+			);
 		}
 	}
 	return $git_repos;
-}
-
-// param name of php file, returns dir
-// in welchem Verzeichnis ist das Plugin installiert?
-function leafext_github_dir( $slug ) {
-	$leafext_plugins = glob( WP_PLUGIN_DIR . '/*/' . $slug . '.php/' );
-	if ( count( $leafext_plugins ) > 0 ) {
-		foreach ( $leafext_plugins as $leafext_plugin ) {
-			$plugin_data = get_plugin_data( $leafext_plugin, true, false );
-			if ( strpos( $plugin_data['Name'], 'Github' ) !== false ) {
-				return dirname( plugin_basename( $leafext_plugin ) );
-			}
-		}
-	}
-	return '';
 }
 
 // To get Updates from Github, plugin must be active on main site
@@ -92,6 +70,20 @@ function leafext_can_updates() {
 	return false;
 }
 
+function leafext_submenu_of() {
+	$submenu = array(
+		'slug' => 'leaflet-map',
+		'name' => 'Leaflet Map',
+	);
+	if ( is_plugin_active( 'photonic/photonic.php' ) && ! is_plugin_active( 'leaflet-map/leaflet-map.php' ) ) {
+		$submenu = array(
+			'slug' => 'photonic-options-manager',
+			'name' => 'Photonic Album',
+		);
+	}
+	return $submenu;
+}
+
 if ( ! is_main_site() ) {
 	// Updates from Github
 	function leafext_goto_main_site() {
@@ -125,9 +117,10 @@ if ( ! is_main_site() ) {
 	}
 
 	function leafext_update_add_page() {
+		$submenu = leafext_submenu_of();
 		// Add Submenu.
 		$leafext_admin_page = add_submenu_page(
-			'photonic-options-manager',
+			$submenu['slug'],
 			'Github Update Options',
 			'Github Update',
 			'manage_options',
@@ -139,9 +132,10 @@ if ( ! is_main_site() ) {
 
 } elseif ( is_plugin_active( 'photonic/photonic.php' ) ) { // on main site
 	function leafext_update_add_page() {
+		$submenu = leafext_submenu_of();
 		// Add Submenu.
 		$leafext_admin_page = add_submenu_page(
-			'photonic-options-manager',
+			$submenu['slug'],
 			'Github Update',
 			'Github Update',
 			'manage_options',
@@ -154,26 +148,27 @@ if ( ! is_main_site() ) {
 } else {
 	// leaflet Map not active, create new Leaflet Menu
 	function leafext_add_page_single() {
+		$submenu = leafext_submenu_of();
 		// from Leaflet Map Plugin
 		$leaf = 'data:image/svg+xml;base64,PHN2ZyBhcmlhLWhpZGRlbj0idHJ1ZSIgZm9jdXNhYmxlPSJmYWxzZSIgZGF0YS1wcmVmaXg9ImZhcyIgZGF0YS1pY29uPSJsZWFmIiBjbGFzcz0ic3ZnLWlubGluZS0tZmEgZmEtbGVhZiBmYS13LTE4IiByb2xlPSJpbWciIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgdmlld0JveD0iMCAwIDU3NiA1MTIiPjxwYXRoIGZpbGw9ImN1cnJlbnRDb2xvciIgZD0iTTU0Ni4yIDkuN2MtNS42LTEyLjUtMjEuNi0xMy0yOC4zLTEuMkM0ODYuOSA2Mi40IDQzMS40IDk2IDM2OCA5NmgtODBDMTgyIDk2IDk2IDE4MiA5NiAyODhjMCA3IC44IDEzLjcgMS41IDIwLjVDMTYxLjMgMjYyLjggMjUzLjQgMjI0IDM4NCAyMjRjOC44IDAgMTYgNy4yIDE2IDE2cy03LjIgMTYtMTYgMTZDMTMyLjYgMjU2IDI2IDQxMC4xIDIuNCA0NjhjLTYuNiAxNi4zIDEuMiAzNC45IDE3LjUgNDEuNiAxNi40IDYuOCAzNS0xLjEgNDEuOC0xNy4zIDEuNS0zLjYgMjAuOS00Ny45IDcxLjktOTAuNiAzMi40IDQzLjkgOTQgODUuOCAxNzQuOSA3Ny4yQzQ2NS41IDQ2Ny41IDU3NiAzMjYuNyA1NzYgMTU0LjNjMC01MC4yLTEwLjgtMTAyLjItMjkuOC0xNDQuNnoiLz48L3N2Zz4=';
 		add_menu_page(
-			'photonic-options-manager',
-			'Photonic Album',
+			$submenu['slug'],
+			$submenu['name'],
 			'manage_options',
-			'photonic-options-manager', // parent slug
+			$submenu['slug'], // parent slug
 			'none', // fake
 			$leaf // icon
 		);
 		add_submenu_page(
-			'photonic-options-manager',  // parent slug
+			$submenu['slug'],  // parent slug
 			'',
 			'',
 			'manage_options',
-			'photonic-options-manager',
+			$submenu['slug'],
 			'none',
 		);
 		add_submenu_page(
-			'photonic-options-manager', // parent page slug
+			$submenu['slug'], // parent page slug
 			'Github Update',
 			'Github Update',
 			'manage_options',
@@ -182,8 +177,8 @@ if ( ! is_main_site() ) {
 		);
 		// remove fake
 		remove_submenu_page(
-			'photonic-options-manager',
-			'photonic-options-manager'
+			$submenu['slug'],
+			$submenu['slug']
 		);
 	}
 	add_action( 'admin_menu', 'leafext_add_page_single' );
