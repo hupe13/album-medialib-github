@@ -1,4 +1,4 @@
-# Photonic Album from Media Library Github
+# Display photos selected by path from the Media Library with Photonic
 
 Contributors: hupe13    
 Tags: photonic, media library  
@@ -8,11 +8,11 @@ Requires at least: 6.8
 Requires PHP: 8.2     
 License: GPLv2 or later
 
-Display photos from Media Library by path with <a href="https://wordpress.org/plugins/photonic/">Photonic Gallery & Lightbox for Flickr, SmugMug & Others</a>.
+Display photos selected by path from Media Library with <a href="https://wordpress.org/plugins/photonic/">Photonic Gallery & Lightbox for Flickr, SmugMug & Others</a>.
 
 ## Description
 
-Display photos from Media Library by path with <a href="https://wordpress.org/plugins/photonic/">Photonic Gallery & Lightbox for Flickr, SmugMug & Others</a>.
+Display photos selected by path from Media Library with <a href="https://wordpress.org/plugins/photonic/">Photonic Gallery & Lightbox for Flickr, SmugMug & Others</a>.
 
 You will get updates with the [Plugin Update Checker](https://github.com/YahnisElsts/plugin-update-checker).
 Maybe you need a Github token.
