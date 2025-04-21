@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name:       Photonic album from Media Library Github
+ * Plugin Name:       Photonic Album from Media Library Github
  * Description:       Display Photonic album from photos in Media Library by path
  * Version:           250420
  * Requires PHP:      8.2
