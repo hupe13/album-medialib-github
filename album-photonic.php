@@ -18,7 +18,7 @@ defined( 'ABSPATH' ) || die();
 function photonic_album_function( $atts ) {
 	if ( is_singular() || is_archive() || is_home() || is_front_page() ) {
 		if ( ! $atts['path'] ) {
-			$text = '[album-photonic ';
+			$text = '[photonic-album ';
 			foreach ( $atts as $key => $item ) {
 				$text = $text . "$key=$item ";
 			}
@@ -45,7 +45,7 @@ function photonic_album_function( $atts ) {
 		}
 	}
 }
-add_shortcode( 'album-photonic', 'photonic_album_function' );
+add_shortcode( 'photonic-album', 'photonic_album_function' );
 
 if ( is_admin() ) {
 
