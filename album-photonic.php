@@ -1,9 +1,9 @@
 <?php
 /**
- * Plugin Name:       Photonic Album from Media Library Github
- * Description:       Display Photonic album from photos in Media Library by path
+ * Plugin Name:       Display photos selected by path from the Media Library
+ * Description:       Organize your photos in folders, select a path and display these photos with <a href="https://wordpress.org/plugins/photonic/">Photonic</a>.
  * Update URI:        https://github.com/hupe13/album-photonic-github
- * Version:           250421
+ * Version:           250423
  * Requires PHP:      8.2
  * Requires Plugins:  photonic
  * Author:            hupe13
@@ -31,7 +31,12 @@ function photonic_album_function( $atts ) {
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
 		$results = $wpdb->get_results( $wpdb->prepare( "SELECT post_id FROM $wpdb->postmeta WHERE meta_value LIKE %s", $image ) );
 		if ( count( $results ) > 0 ) {
-			$shortcode = '[photonic ids="';
+			$photonic_default   = array(
+				'alternative_shortcode' => 'gallery',
+			);
+			$photonic_options   = shortcode_atts( $photonic_default, get_option( 'photonic_options' ) );
+			$photonic_shortcode = $photonic_options['alternative_shortcode'] !== '' ? $photonic_options['alternative_shortcode'] : 'gallery';
+			$shortcode          = '[' . $photonic_shortcode . ' ids="';
 			foreach ( $results as $result ) {
 				$shortcode .= $result->post_id . ',';
 			}
@@ -55,13 +60,6 @@ if ( is_admin() ) {
 	define( 'PHOTONIC_ALBUM_URL', WP_PLUGIN_URL . '/' . basename( PHOTONIC_ALBUM_DIR ) ); // https://url/wp-content/plugins/photonic_album-update-github/ .
 	define( 'PHOTONIC_ALBUM_NAME', basename( PHOTONIC_ALBUM_DIR ) ); // photonic_album-update-github
 
-	if ( ! function_exists( 'get_plugin_data' ) ) {
-		require_once ABSPATH . 'wp-admin/includes/plugin.php';
-	}
-	// string $plugin_file, bool $markup = true, bool $translate = true
-	$plugin_data = get_plugin_data( __FILE__, true, false );
-	define( 'PHOTONIC_ALBUM_VERSION', $plugin_data['Version'] );
-
 	if ( ! function_exists( 'leafext_plugin_active' ) ) {
 		function leafext_plugin_active( $slug ) {
 			$plugins = glob( WP_PLUGIN_DIR . '/*/' . $slug . '.php' );
@@ -80,6 +78,18 @@ if ( is_admin() ) {
 			return false;
 		}
 	}
+
+	// Add documentation link
+	function leafext_album_row_meta( $plugin_meta, $plugin_file ) {
+		if ( strpos( $plugin_file, 'album-photonic.php' ) !== false ) {
+			$new_links   = array(
+				'doc' => '<a href="' . esc_url( 'https://github.com/hupe13/album-photonic-github?tab=readme-ov-file#howto' ) . '" target="_blank">' . esc_html__( 'Documentation', 'default' ) . '</a>',
+			);
+			$plugin_meta = array_merge( $plugin_meta, $new_links );
+		}
+		return $plugin_meta;
+	}
+	add_filter( 'plugin_row_meta', 'leafext_album_row_meta', 10, 2 );
 
 	if ( leafext_plugin_active( 'photonic' ) ) {
 		// Add settings to plugin page

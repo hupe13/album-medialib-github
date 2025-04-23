@@ -2,18 +2,50 @@
 /**
  *  Functions to use for PUC
  *
- * @package Updates for Leaflet Map Extensions and DSGVO Github Versions
+ * @package Updates for plugins from hupe13 hosted on Github
  **/
 
 // Direktzugriff auf diese Datei verhindern.
 defined( 'ABSPATH' ) || die();
 
-require_once ABSPATH . 'wp-admin/includes/plugin.php';
+// for translating, geklaut von PUC
+function leafext_update_github_textdomain() {
+	$domain = 'leafext-update-github';
+	$locale = apply_filters(
+		'plugin_locale',
+		( is_admin() && function_exists( 'get_user_locale' ) ) ? get_user_locale() : get_locale(),
+		$domain
+	);
+	$mo_file = $domain . '-' . $locale . '.mo';
+	$path   = realpath( __DIR__ ) . '/lang/';
+	if ( $path && file_exists( $path ) ) {
+		load_textdomain( $domain, $path . $mo_file );
+	}
+}
+add_action( 'plugins_loaded', 'leafext_update_github_textdomain' );
+
+// Display array as table
+if ( ! function_exists( 'leafext_html_table' ) ) {
+	function leafext_html_table( $data = array() ) {
+		$rows      = array();
+		$cellstyle = ( is_singular() || is_archive() ) ? "style='border:1px solid #195b7a;'" : '';
+		foreach ( $data as $row ) {
+			$cells = array();
+			foreach ( $row as $cell ) {
+				$cells[] = '<td ' . $cellstyle . ">{$cell}</td>";
+			}
+			$rows[] = '<tr>' . implode( '', $cells ) . '</tr>' . "\n";
+		}
+		$head = '<div style="width:' . ( ( is_singular() || is_archive() ) ? '100' : '80' ) . '%;">';
+		$head = $head . '<figure class="wp-block-table aligncenter is-style-stripes"><table border=1>';
+		return $head . implode( '', $rows ) . '</table></figure></div>';
+	}
+}
 
 // Repos on Github
 function leafext_get_repos() {
 	$releases  = array(
-		'extensions-leaflet-map' => false,
+		'extensions-leaflet-map'         => false,
 		'extensions-leaflet-map-testing' => false,
 	);
 	$git_repos = array();
@@ -75,11 +107,20 @@ function leafext_submenu_of() {
 		'slug' => 'leaflet-map',
 		'name' => 'Leaflet Map',
 	);
-	if ( is_plugin_active( 'photonic/photonic.php' ) && ! is_plugin_active( 'leaflet-map/leaflet-map.php' ) ) {
-		$submenu = array(
-			'slug' => 'photonic-options-manager',
-			'name' => 'Photonic Album',
-		);
+	if (
+				( is_plugin_active( 'photonic/photonic.php' ) &&
+					! is_plugin_active( 'leaflet-map/leaflet-map.php' )
+				)
+				||
+				( is_main_site() &&
+					file_exists( WP_PLUGIN_DIR . '/photonic/photonic.php' ) &&
+					! file_exists( WP_PLUGIN_DIR . '/leaflet-map/leaflet-map.php' )
+				)
+			) {
+						$submenu = array(
+							'slug' => 'photonic-options-manager',
+							'name' => 'Photonic Album',
+						);
 	}
 	return $submenu;
 }
@@ -99,7 +140,7 @@ if ( ! is_main_site() ) {
 				'<a href="' . esc_url( get_site_url( get_main_site_id() ) ) . '/wp-admin/plugins.php">',
 				'</a>',
 				'<b>Github</b>',
-				'<a href="https://github.com/hupe13/leafext-update-github">Updates for Leaflet Map Extensions and DSGVO Github Versions</a>'
+				'<a href="https://github.com/hupe13/leafext-update-github">Updates for plugins from hupe13 hosted on Github</a>'
 			);
 		} else {
 			printf(

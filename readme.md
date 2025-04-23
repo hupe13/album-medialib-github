@@ -1,18 +1,18 @@
-# Display photos selected by path from the Media Library with Photonic
+# Display photos selected by path from the Media Library
 
 Contributors: hupe13    
 Tags: photonic, media library  
 Tested up to: 6.8  
-Stable tag: 250421     
+Stable tag: 250423     
 Requires at least: 6.8     
 Requires PHP: 8.2     
 License: GPLv2 or later
 
-Display photos selected by path from Media Library with <a href="https://wordpress.org/plugins/photonic/">Photonic Gallery & Lightbox for Flickr, SmugMug & Others</a>.
+Organize your photos in folders, select a path and display these photos with <a href="https://wordpress.org/plugins/photonic/">Photonic Gallery & Lightbox for Flickr, SmugMug & Others</a>.
 
 ## Description
 
-Display photos selected by path from Media Library with <a href="https://wordpress.org/plugins/photonic/">Photonic Gallery & Lightbox for Flickr, SmugMug & Others</a>.
+Organize your photos in folders, select a path and display these photos with <a href="https://wordpress.org/plugins/photonic/">Photonic Gallery & Lightbox for Flickr, SmugMug & Others</a>.
 
 You will get updates with the [Plugin Update Checker](https://github.com/YahnisElsts/plugin-update-checker).
 Maybe you need a Github token.
@@ -23,6 +23,7 @@ The plugin is not ready yet. Please also check manually whether updates are avai
 
 - Organize your photos in folders. Store the photos for each album in a folder of the WordPress upload folder.
 - Use a plugin like [Bulk Media Register](https://wordpress.org/plugins/bulk-media-register/) to import the photos to the Media Library.
+- You can import the Exif data to the Media Library for example with [Exif Caption](https://wordpress.org/plugins/exif-caption/).
 - Use the Photonic Gallery block to generate the display of photos.
 - Choose as Gallery Source "WordPress".
 - Choose as Type of Gallery "Photos from Media Library"
@@ -38,7 +39,7 @@ to
 ```
 [photonic-album path='....' main_size='...' tile_size='...' style='...' ....]
 ```
-- Use as `path` a substring of the path, for example `holidays25`.
+- Use as `path` a substring of the path, for example `holidays25/day1`.
 
 ## Changelog
 
@@ -49,3 +50,7 @@ to
 ### 250421
 
 - many corrections: typos, wp_postmeta table, update
+
+### 250423
+
+- many corrections: update, consider Photonics custom shortcode
