@@ -10,14 +10,14 @@ defined( 'ABSPATH' ) || die();
 
 // for translating, geklaut von PUC
 function leafext_update_github_textdomain() {
-	$domain = 'leafext-update-github';
-	$locale = apply_filters(
+	$domain  = 'leafext-update-github';
+	$locale  = apply_filters(
 		'plugin_locale',
 		( is_admin() && function_exists( 'get_user_locale' ) ) ? get_user_locale() : get_locale(),
 		$domain
 	);
 	$mo_file = $domain . '-' . $locale . '.mo';
-	$path   = realpath( __DIR__ ) . '/lang/';
+	$path    = realpath( __DIR__ ) . '/lang/';
 	if ( $path && file_exists( $path ) ) {
 		load_textdomain( $domain, $path . $mo_file );
 	}
@@ -107,20 +107,11 @@ function leafext_submenu_of() {
 		'slug' => 'leaflet-map',
 		'name' => 'Leaflet Map',
 	);
-	if (
-				( is_plugin_active( 'photonic/photonic.php' ) &&
-					! is_plugin_active( 'leaflet-map/leaflet-map.php' )
-				)
-				||
-				( is_main_site() &&
-					file_exists( WP_PLUGIN_DIR . '/photonic/photonic.php' ) &&
-					! file_exists( WP_PLUGIN_DIR . '/leaflet-map/leaflet-map.php' )
-				)
-			) {
-						$submenu = array(
-							'slug' => 'photonic-options-manager',
-							'name' => 'Photonic Album',
-						);
+	if ( defined( 'ALBUM_MEDIALIB_NAME' ) ) {
+		$submenu = array(
+			'slug' => 'album-medialib',
+			'name' => 'Album Media Library',
+		);
 	}
 	return $submenu;
 }
