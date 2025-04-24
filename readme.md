@@ -1,3 +1,5 @@
+Sorry, does not work yet. Tomorrow ...
+
 # Display photos selected by path from the Media Library
 
 Contributors: hupe13    
