@@ -9,17 +9,19 @@
 defined( 'ABSPATH' ) || die();
 
 // for translating, geklaut von PUC
-function leafext_update_github_textdomain() {
-	$domain  = 'leafext-update-github';
-	$locale  = apply_filters(
-		'plugin_locale',
-		( is_admin() && function_exists( 'get_user_locale' ) ) ? get_user_locale() : get_locale(),
-		$domain
-	);
-	$mo_file = $domain . '-' . $locale . '.mo';
-	$path    = realpath( __DIR__ ) . '/lang/';
-	if ( $path && file_exists( $path ) ) {
-		load_textdomain( $domain, $path . $mo_file );
+if (function_exists( 'leafext_update_github_textdomain' ) ) {
+	function leafext_update_github_textdomain() {
+		$domain  = 'leafext-update-github';
+		$locale  = apply_filters(
+			'plugin_locale',
+			( is_admin() && function_exists( 'get_user_locale' ) ) ? get_user_locale() : get_locale(),
+			$domain
+		);
+		$mo_file = $domain . '-' . $locale . '.mo';
+		$path    = realpath( __DIR__ ) . '/lang/';
+		if ( $path && file_exists( $path ) ) {
+			load_textdomain( $domain, $path . $mo_file );
+		}
 	}
 }
 add_action( 'plugins_loaded', 'leafext_update_github_textdomain' );
