@@ -1,11 +1,9 @@
-Sorry, does not work yet. Tomorrow ...
-
-# Display photos selected by path from the Media Library
+# Display photos located below a specific folder from the media library
 
 Contributors: hupe13    
 Tags: albums, media library  
 Tested up to: 6.8  
-Stable tag: 250424     
+Stable tag: 250425     
 Requires at least: 6.8     
 Requires PHP: 8.1     
 License: GPLv2 or later
@@ -25,7 +23,7 @@ The plugin is not ready yet. Please also check manually whether updates are avai
 <p>
 <ul>
 <li> Organize your photos in directories. Store the photos for each album in a subdirectory in the WordPress upload directory.</li>
-<li> Useful plugins:
+<li> I use the following plugins:
 <ul>
  <li> <a href="https://wordpress.org/plugins/bulk-media-register/">Bulk Media Register</a> to import the photos to the Media Library.</li>
  <li> <a href="https://wordpress.org/plugins/upload-media-exif-date/">Upload Media Exif Date</a> to store to the date/time of Exif information.</li>

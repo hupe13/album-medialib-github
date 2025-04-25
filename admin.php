@@ -20,10 +20,16 @@ function album_medialib_add_page() {
 }
 add_action( 'admin_menu', 'album_medialib_add_page' );
 
+function album_medialib_action_links( $actions ) {
+	$actions[] = '<a href="' . esc_url( admin_url( 'admin.php' ) . '?page=album-medialib' ) . '">' . esc_html__( 'Settings', 'album-medialib' ) . '</a>';
+	return $actions;
+}
+add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), 'album_medialib_action_links' );
+
 // Admin page for the plugin
 function album_medialib_admin() {
-	echo '<h3>' . esc_html__( 'Display photos selected by path from the Media Library - Options and Help', 'album-medialib' ) . '</h3>';
-	$allowed_html = wp_kses_allowed_html( 'post' );
+	echo '<h3>' . esc_html__( 'Display photos located below a specific folder from the media library', 'album-medialib' ) . ' - ' . esc_html__( 'Help and Options', 'album-medialib' ) . '</h3>';
+	$allowed_html          = wp_kses_allowed_html( 'post' );
 	$allowed_html['style'] = true;
 	echo wp_kses( album_medialib_help(), $allowed_html );
 	if ( current_user_can( 'manage_options' ) ) {
@@ -50,7 +56,6 @@ function album_medialib_init() {
 	}
 	register_setting( 'album_medialib_settings', 'album_medialib', 'album_medialib_validate' );
 }
-
 add_action( 'admin_init', 'album_medialib_init' );
 
 // Baue Abfrage der Params
@@ -85,7 +90,7 @@ function album_medialib_help() {
 	}</style>
 	<ul>
 	<li> Organize your photos in directories. Store the photos for each album in a subdirectory in the WordPress upload directory.</li>
-	<li> Useful plugins:
+	<li> I use the following plugins:
 	<ul>
 	 <li> <a href="https://wordpress.org/plugins/bulk-media-register/">Bulk Media Register</a> to import the photos to the Media Library.</li>
 	 <li> <a href="https://wordpress.org/plugins/upload-media-exif-date/">Upload Media Exif Date</a> to store to the date/time of Exif information.</li>

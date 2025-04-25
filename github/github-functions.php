@@ -9,22 +9,20 @@
 defined( 'ABSPATH' ) || die();
 
 // for translating, geklaut von PUC
-if (function_exists( 'leafext_update_github_textdomain' ) ) {
-	function leafext_update_github_textdomain() {
-		$domain  = 'leafext-update-github';
-		$locale  = apply_filters(
-			'plugin_locale',
-			( is_admin() && function_exists( 'get_user_locale' ) ) ? get_user_locale() : get_locale(),
-			$domain
-		);
-		$mo_file = $domain . '-' . $locale . '.mo';
-		$path    = realpath( __DIR__ ) . '/lang/';
-		if ( $path && file_exists( $path ) ) {
-			load_textdomain( $domain, $path . $mo_file );
-		}
+function leafext_update_textdomain() {
+	$domain  = 'leafext-update-github';
+	$locale  = apply_filters(
+		'plugin_locale',
+		( is_admin() && function_exists( 'get_user_locale' ) ) ? get_user_locale() : get_locale(),
+		$domain
+	);
+	$mo_file = $domain . '-' . $locale . '.mo';
+	$path    = realpath( __DIR__ ) . '/lang/';
+	if ( $path && file_exists( $path ) ) {
+		load_textdomain( $domain, $path . $mo_file );
 	}
 }
-add_action( 'plugins_loaded', 'leafext_update_github_textdomain' );
+add_action( 'plugins_loaded', 'leafext_update_textdomain' );
 
 // Display array as table
 if ( ! function_exists( 'leafext_html_table' ) ) {
@@ -231,8 +229,8 @@ function leafext_update_admin() {
 
 function leafext_table_repos() {
 
-	$slugs     = array_keys( leafext_get_repos() );
-		$table = array();
+	$slugs = array_keys( leafext_get_repos() );
+	$table = array();
 
 	foreach ( $slugs as $slug ) {
 		$leafext_plugins = glob( WP_PLUGIN_DIR . '/*/' . $slug . '.php/' );
@@ -240,7 +238,12 @@ function leafext_table_repos() {
 			foreach ( $leafext_plugins as $leafext_plugin ) {
 				$entry           = array();
 				$plugin_data     = get_plugin_data( $leafext_plugin );
-				$entry['name']   = str_replace( 'Github', '<b>Github</b>', $plugin_data['Name'] );
+				$entry['name']   = $plugin_data['Name'];
+				if ( strpos( $plugin_data['UpdateURI'], 'https://github.com/hupe13/' ) !== false ) {
+					$entry['hosted']   = 'Github';
+				} else {
+					$entry['hosted']   = 'WordPress';
+				}
 				$entry['active'] = array();
 				$blogs           = array();
 				if ( function_exists( 'get_sites' ) ) {
@@ -273,6 +276,7 @@ function leafext_table_repos() {
 						. '</a>';
 					}
 				}
+				$entry['hosted'] = '<div style="text-align:center">' . $entry['hosted'] . '</div>';
 				$entry['active'] = '<ul><li style="text-align:center">' . implode( '<li style="text-align:center">', $entry['active'] ) . '</ul>';
 				$entry['links']  = '<ul><li>' . implode( '<li>', $blogs ) . '</ul>';
 				$table[]         = $entry;
@@ -281,6 +285,7 @@ function leafext_table_repos() {
 	}
 	$header = array(
 		'<b>' . __( 'Name', 'leafext-update-github' ) . '</b>',
+		'<b>' . __( 'hosted on', 'leafext-update-github' ) . '</b>',
 		'<b>' . __( 'active', 'leafext-update-github' ) . '</b>',
 		'<b>' . __( 'link to blog', 'leafext-update-github' ) . '</b>',
 	);

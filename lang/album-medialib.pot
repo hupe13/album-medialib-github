@@ -1,0 +1,61 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Display photos selected by path from the Media Library\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-04-25 11:47+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: \n"
+"Language: \n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.7.2; wp-6.8\n"
+"X-Domain: album-medialib"
+
+#. Name of the plugin
+#: admin.php:31
+msgid "Display photos located below a specific folder from the media library"
+msgstr ""
+
+#: admin.php:31
+msgid "Help and Options"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://leafext.de/en/"
+msgstr ""
+
+#. Author of the plugin
+msgid "hupe13"
+msgstr ""
+
+#: admin.php:14
+msgid "Medialib Album"
+msgstr ""
+
+#: album-medialib.php:36
+#, php-format
+msgid "Name of the %s option"
+msgstr ""
+
+#. Description of the plugin
+msgid ""
+"Organize your photos in folders, select a path and display these photos with "
+"any gallery shortcode."
+msgstr ""
+
+#: admin.php:45
+msgid "Reset"
+msgstr ""
+
+#: admin.php:24
+msgid "Settings"
+msgstr ""
+
+#: album-medialib.php:31
+msgid "Your Shortcode"
+msgstr ""

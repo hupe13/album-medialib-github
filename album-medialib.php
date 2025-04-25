@@ -1,9 +1,9 @@
 <?php
 /**
- * Plugin Name:       Display photos selected by path from the Media Library
+ * Plugin Name:       Display photos located below a specific folder from the media library
  * Description:       Organize your photos in folders, select a path and display these photos with any gallery shortcode.
  * Update URI:        https://github.com/hupe13/album-medialib-github
- * Version:           250424
+ * Version:           250425
  * Requires PHP:      8.1
  * Author:            hupe13
  * Author URI:        https://leafext.de/en/
@@ -33,7 +33,8 @@ function album_medialib_params() {
 		),
 		array(
 			'param'   => 'ids',
-			'desc'    => __( 'Name of the list option', 'album-medialib' ),
+			/* translators: %s is an option. */
+			'desc'    => sprintf( __( 'Name of the %s option', 'album-medialib' ), 'list' ),
 			'default' => 'ids',
 		),
 	);
@@ -86,16 +87,10 @@ add_filter(
 
 if ( is_admin() ) {
 
-	define( 'ALBUM_MEDIALIB_FILE', __FILE__ ); // /pfad/wp-content/plugins/album_medialib-update-github/album_medialib-update-github.php .
-	define( 'ALBUM_MEDIALIB_DIR', plugin_dir_path( __FILE__ ) ); // /pfad/wp-content/plugins/album_medialib-update-github/ .
-	define( 'ALBUM_MEDIALIB_URL', WP_PLUGIN_URL . '/' . basename( ALBUM_MEDIALIB_DIR ) ); // https://url/wp-content/plugins/album_medialib-update-github/ .
-	define( 'ALBUM_MEDIALIB_NAME', basename( ALBUM_MEDIALIB_DIR ) ); // album_medialib-update-github
-
-	function album_medialib_action_links( $actions ) {
-		$actions[] = '<a href="' . esc_url( admin_url( 'admin.php' ) . '?page=album-medialib' ) . '">' . esc_html__( 'Settings', 'album-medialib' ) . '</a>';
-		return $actions;
-	}
-	add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), 'album_medialib_action_links' );
+	define( 'ALBUM_MEDIALIB_FILE', __FILE__ ); // /pfad/wp-content/plugins/album-medialib-github/album-medialib.php .
+	define( 'ALBUM_MEDIALIB_DIR', plugin_dir_path( __FILE__ ) ); // /pfad/wp-content/plugins/album-medialib-github/ .
+	// define( 'ALBUM_MEDIALIB_URL', WP_PLUGIN_URL . '/' . basename( ALBUM_MEDIALIB_DIR ) ); // https://url/wp-content/plugins/album-medialib-github/ .
+	define( 'ALBUM_MEDIALIB_NAME', basename( ALBUM_MEDIALIB_DIR ) ); // album-medialib-github
 
 	include_once ALBUM_MEDIALIB_DIR . 'admin.php';
 	require_once ALBUM_MEDIALIB_DIR . 'github-backend-album-medialib.php';

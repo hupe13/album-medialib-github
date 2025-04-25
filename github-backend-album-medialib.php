@@ -2,18 +2,19 @@
 /**
  * Backend Menus
  *
- * @package Extensions for Leaflet Map Github Version
+ * @package album-medialib
  **/
 
 // Direktzugriff auf diese Datei verhindern.
 defined( 'ABSPATH' ) || die();
 
-// Add settings to plugin page
-function album_medialib_add_action_links( $actions ) {
-	$actions[] = '<a href="' . esc_url( admin_url( 'admin.php' ) . '?page=github-settings' ) . '">' . esc_html__( 'Settings', 'album-medialib' ) . '</a>';
-	return $actions;
+// for translating a plugin
+function album_medialib_textdomain() {
+	if ( get_locale() === 'de_DE' ) {
+		load_plugin_textdomain( 'album-medialib', false, ALBUM_MEDIALIB_NAME . '/lang/' );
+	}
 }
-add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), 'album_medialib_add_action_links' );
+add_action( 'plugins_loaded', 'album_medialib_textdomain' );
 
 if ( ! function_exists( 'leafext_get_repos' ) ) {
 	require_once ALBUM_MEDIALIB_DIR . 'github/github-functions.php';
