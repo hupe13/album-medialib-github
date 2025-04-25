@@ -39,6 +39,6 @@ The plugin is not ready yet. Please also check manually whether updates are avai
 
 ## Changelog
 
-### 250424
+### 250425
 
 * Everything revised and new procedure
