@@ -35,7 +35,7 @@ Maybe you need a Github token.
 
 * german translation
 * update procedure for all my plugins adjusted
-* php warning abouth path fixed
+* php warning about path fixed
 
 ### 250425
 
