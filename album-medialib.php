@@ -3,7 +3,7 @@
  * Plugin Name:       Display photos located below a specific folder from the media library
  * Description:       Organize your photos in folders, select a path and display these photos with any gallery shortcode.
  * Update URI:        https://github.com/hupe13/album-medialib-github
- * Version:           250425
+ * Version:           250427
  * Requires PHP:      8.1
  * Author:            hupe13
  * Author URI:        https://leafext.de/en/
@@ -57,24 +57,26 @@ add_filter(
 		if ( is_singular() || is_archive() || is_home() || is_front_page() ) {
 			$setting = album_medialib_settings();
 			if ( $setting['shortcode'] === $shortcode ) {
-				if ( $attr['path'] && $attr['path'] !== '' ) {
-					global $wpdb;
-					$image = '%' . $attr['path'] . '%';
+				if ( array_key_exists( 'path', $attr ) ) {
+					if ( $attr['path'] !== '' ) {
+						global $wpdb;
+						$image = '%' . $attr['path'] . '%';
 					// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
-					$results = $wpdb->get_results( $wpdb->prepare( "SELECT post_id FROM $wpdb->postmeta WHERE meta_value LIKE %s", $image ) );
-					if ( count( $results ) > 0 ) {
-						$ids = '';
-						foreach ( $results as $result ) {
-							$ids .= $result->post_id . ',';
-						}
-						$new_shortcode = '[' . $shortcode . ' ' . $setting['ids'] . '="' . $ids . '" ';
-						foreach ( $attr as $key => $item ) {
-							if ( $key !== 'path' ) {
-								$new_shortcode .= "$key='$item' ";
+						$results = $wpdb->get_results( $wpdb->prepare( "SELECT post_id FROM $wpdb->postmeta WHERE meta_value LIKE %s", $image ) );
+						if ( count( $results ) > 0 ) {
+							$ids = '';
+							foreach ( $results as $result ) {
+								$ids .= $result->post_id . ',';
 							}
+							$new_shortcode = '[' . $shortcode . ' ' . $setting['ids'] . '="' . $ids . '" ';
+							foreach ( $attr as $key => $item ) {
+								if ( $key !== 'path' ) {
+									$new_shortcode .= "$key='$item' ";
+								}
+							}
+							$new_shortcode .= ']';
+							return do_shortcode( $new_shortcode );
 						}
-						$new_shortcode .= ']';
-						return do_shortcode( $new_shortcode );
 					}
 				}
 			}

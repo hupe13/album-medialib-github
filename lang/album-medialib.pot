@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Display photos selected by path from the Media Library\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-25 11:47+0000\n"
+"POT-Creation-Date: 2025-04-26 16:17+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -15,6 +15,24 @@ msgstr ""
 "X-Generator: Loco https://localise.biz/\n"
 "X-Loco-Version: 2.7.2; wp-6.8\n"
 "X-Domain: album-medialib"
+
+#. %1$s is "path", %2$s an example.
+#: admin.php:131
+#, php-format
+msgid "%1$s is a substring of the directory path, for example %2$s."
+msgstr ""
+
+#: admin.php:142
+msgid "becomes"
+msgstr ""
+
+#. %1$s is "gallery", %2$s "ids".
+#: admin.php:114
+#, php-format
+msgid ""
+"Configure the name of this shortcode (default %1$s) and the list option "
+"(default %2$s) in admin backend."
+msgstr ""
 
 #. Name of the plugin
 #: admin.php:31
@@ -37,9 +55,16 @@ msgstr ""
 msgid "Medialib Album"
 msgstr ""
 
-#: album-medialib.php:36
+#. %s is an option.
+#: album-medialib.php:37
 #, php-format
 msgid "Name of the %s option"
+msgstr ""
+
+#: admin.php:89
+msgid ""
+"Organize your photos in directories. Store the photos for each album in a "
+"subdirectory in the WordPress upload directory."
 msgstr ""
 
 #. Description of the plugin
@@ -54,6 +79,34 @@ msgstr ""
 
 #: admin.php:24
 msgid "Settings"
+msgstr ""
+
+#: admin.php:140
+msgid "Shortcode with your gallery plugin"
+msgstr ""
+
+#. %1$s is "shortcode", %2$s is a url to a plugin.
+#: admin.php:105
+#, php-format
+msgid ""
+"Use the default %1$s shortcode or install a plugin to display photos from "
+"Media Library, which has a shortcode for this, for example %2$s."
+msgstr ""
+
+#. %s is "path".
+#: admin.php:123
+#, php-format
+msgid ""
+"Write your shortcode as usual, omit the list option and use an extra option "
+"%s."
+msgstr ""
+
+#. %1$s, %2$s is an url, %3$s is a url to a plugin.
+#: admin.php:95
+#, php-format
+msgid ""
+"You can use a %1$splugin%2$s to do this. I use %3$s to import the photos to "
+"the Media Library, which I uploaded before with sftp."
 msgstr ""
 
 #: album-medialib.php:31

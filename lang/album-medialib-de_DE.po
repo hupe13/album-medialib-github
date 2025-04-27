@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Display photos selected by path from the Media Library\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-04-25 10:13+0000\n"
-"PO-Revision-Date: 2025-04-25 11:47+0000\n"
+"PO-Revision-Date: 2025-04-27 14:42+0000\n"
 "Last-Translator: hupe13\n"
 "Language-Team: Deutsch\n"
 "Language: de_DE\n"
@@ -14,6 +14,27 @@ msgstr ""
 "X-Generator: Loco https://localise.biz/\n"
 "X-Loco-Version: 2.7.2; wp-6.8\n"
 "X-Domain: album-medialib"
+
+#. %1$s is "path", %2$s an example.
+#: admin.php:131
+#, php-format
+msgid "%1$s is a substring of the directory path, for example %2$s."
+msgstr ""
+"%1$s ist eine Teilzeichenkette des Verzeichnispfads, zum Beispiel %2$s."
+
+#: admin.php:142
+msgid "becomes"
+msgstr "wird zu"
+
+#. %1$s is "gallery", %2$s "ids".
+#: admin.php:114
+#, php-format
+msgid ""
+"Configure the name of this shortcode (default %1$s) and the list option "
+"(default %2$s) in admin backend."
+msgstr ""
+"Konfiguriere den Namen dieses Shortcodes (Standard %1$s) und die List-Option "
+"(Standard %2$s) im Admin-Backend."
 
 #. Name of the plugin
 #: admin.php:31
@@ -38,11 +59,20 @@ msgstr "hupe13"
 msgid "Medialib Album"
 msgstr "Medien Album"
 
-#: album-medialib.php:36
+#. %s is an option.
+#: album-medialib.php:37
 #, php-format
 #| msgid "Name of the list option"
 msgid "Name of the %s option"
 msgstr "Name der %s Option"
+
+#: admin.php:89
+msgid ""
+"Organize your photos in directories. Store the photos for each album in a "
+"subdirectory in the WordPress upload directory."
+msgstr ""
+"Organisiere deine Fotos in Verzeichnissen. Speichere die Fotos für jedes "
+"Album in einem Unterverzeichnis im WordPress-Upload-Verzeichnis."
 
 #. Description of the plugin
 msgid ""
@@ -59,6 +89,42 @@ msgstr "Zurücksetzen"
 #: admin.php:24
 msgid "Settings"
 msgstr "Einstellungen"
+
+#: admin.php:140
+msgid "Shortcode with your gallery plugin"
+msgstr "Der Shortcode mit deinem Galerie-Plugin"
+
+#. %1$s is "shortcode", %2$s is a url to a plugin.
+#: admin.php:105
+#, php-format
+msgid ""
+"Use the default %1$s shortcode or install a plugin to display photos from "
+"Media Library, which has a shortcode for this, for example %2$s."
+msgstr ""
+"Verwende den Standard-Shortcode %1$s oder installiere ein Plugin zur Anzeige "
+"von Fotos aus der Medienbibliothek, das über einen entsprechenden Shortcode "
+"verfügt, zum Beispiel %2$s."
+
+#. %s is "path".
+#: admin.php:123
+#, php-format
+msgid ""
+"Write your shortcode as usual, omit the list option and use an extra option "
+"%s."
+msgstr ""
+"Schreibe deinen Shortcode wie gewohnt, lasse die List-Option weg und "
+"verwende die zusätzliche Option %s."
+
+#. %1$s, %2$s is an url, %3$s is a url to a plugin.
+#: admin.php:95
+#, php-format
+msgid ""
+"You can use a %1$splugin%2$s to do this. I use %3$s to import the photos to "
+"the Media Library, which I uploaded before with sftp."
+msgstr ""
+"Du kannst dafür ein %1$sPlugin%2$s verwenden. Ich verwende %3$s, um die "
+"Fotos, die ich zuvor mit sftp hochgeladen habe, in die Medienbibliothek zu "
+"importieren."
 
 #: album-medialib.php:31
 msgid "Your Shortcode"

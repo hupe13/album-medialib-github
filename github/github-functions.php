@@ -54,14 +54,25 @@ function leafext_get_repos() {
 	}
 	$all_plugins = get_plugins();
 	foreach ( $all_plugins as $plugin => $plugin_data ) {
-		if ( strpos( $plugin_data['UpdateURI'], 'https://github.com/hupe13/' ) !== false ) {
-			$slug               = basename( $plugin, '.php' );
-			$release            = isset( $releases[ $slug ] ) ? $releases[ $slug ] : true;
-			$git_repos[ $slug ] = array(
-				'url'     => $plugin_data['UpdateURI'],
-				'local'   => WP_PLUGIN_DIR . '/' . $plugin,
-				'release' => $release,
-			);
+		if ( $plugin_data['Author'] === 'hupe13' ) {
+			if ( strpos( $plugin_data['UpdateURI'], 'https://github.com/hupe13/' ) !== false
+				|| strpos( $plugin_data['PluginURI'], 'https://github.com/hupe13/' ) !== false
+				|| file_exists( WP_PLUGIN_DIR . '/' . dirname( $plugin ) . '/github' )
+			) {
+				$slug    = basename( $plugin, '.php' );
+				$release = isset( $releases[ $slug ] ) ? $releases[ $slug ] : true;
+				$url     = $plugin_data['UpdateURI'];
+				if ( $url === '' ) {
+					$url = $plugin_data['PluginURI'];
+				}
+				if ( $url !== '' ) {
+					$git_repos[ $slug ] = array(
+						'url'     => $url,
+						'local'   => WP_PLUGIN_DIR . '/' . $plugin,
+						'release' => $release,
+					);
+				}
+			}
 		}
 	}
 	return $git_repos;
@@ -103,16 +114,33 @@ function leafext_can_updates() {
 }
 
 function leafext_submenu_of() {
-	$submenu = array(
-		'slug' => 'leaflet-map',
+	$groups                   = array();
+	// from Leaflet Map Plugin
+	$leaf                     = 'data:image/svg+xml;base64,PHN2ZyBhcmlhLWhpZGRlbj0idHJ1ZSIgZm9jdXNhYmxlPSJmYWxzZSIgZGF0YS1wcmVmaXg9ImZhcyIgZGF0YS1pY29uPSJsZWFmIiBjbGFzcz0ic3ZnLWlubGluZS0tZmEgZmEtbGVhZiBmYS13LTE4IiByb2xlPSJpbWciIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgdmlld0JveD0iMCAwIDU3NiA1MTIiPjxwYXRoIGZpbGw9ImN1cnJlbnRDb2xvciIgZD0iTTU0Ni4yIDkuN2MtNS42LTEyLjUtMjEuNi0xMy0yOC4zLTEuMkM0ODYuOSA2Mi40IDQzMS40IDk2IDM2OCA5NmgtODBDMTgyIDk2IDk2IDE4MiA5NiAyODhjMCA3IC44IDEzLjcgMS41IDIwLjVDMTYxLjMgMjYyLjggMjUzLjQgMjI0IDM4NCAyMjRjOC44IDAgMTYgNy4yIDE2IDE2cy03LjIgMTYtMTYgMTZDMTMyLjYgMjU2IDI2IDQxMC4xIDIuNCA0NjhjLTYuNiAxNi4zIDEuMiAzNC45IDE3LjUgNDEuNiAxNi40IDYuOCAzNS0xLjEgNDEuOC0xNy4zIDEuNS0zLjYgMjAuOS00Ny45IDcxLjktOTAuNiAzMi40IDQzLjkgOTQgODUuOCAxNzQuOSA3Ny4yQzQ2NS41IDQ2Ny41IDU3NiAzMjYuNyA1NzYgMTU0LjNjMC01MC4yLTEwLjgtMTAyLjItMjkuOC0xNDQuNnoiLz48L3N2Zz4=';
+	$groups['leaflet-map']    = array(
 		'name' => 'Leaflet Map',
+		'icon' => $leaf,
 	);
-	if ( defined( 'ALBUM_MEDIALIB_NAME' ) ) {
-		$submenu = array(
-			'slug' => 'album-medialib',
-			'name' => 'Album Media Library',
-		);
+	$groups['album-medialib'] = array(
+		'name' => 'Album Media Library',
+		'icon' => '',
+	);
+	foreach ( $groups as $key => $group ) {
+		$exist = preg_grep( '/' . $key . '/', array_keys( leafext_get_repos() ) );
+		if ( count( $exist ) > 0 ) {
+			$submenu = array(
+				'slug' => $key,
+				'name' => $group['name'],
+				'icon' => $group['icon'],
+			);
+			return $submenu;
+		}
 	}
+	$submenu = array(
+		'slug' => 'setting',
+		'name' => 'Github',
+		'icon' => '',
+	);
 	return $submenu;
 }
 
@@ -162,7 +190,7 @@ if ( ! is_main_site() ) {
 	}
 	add_action( 'admin_menu', 'leafext_update_add_page', 100 );
 
-} elseif ( is_plugin_active( 'photonic/photonic.php' ) ) { // on main site
+} elseif ( defined( 'ALBUM_MEDIALIB_NAME' ) || is_plugin_active( 'leaflet-map/leaflet-map.php' ) ) { // on main site
 	function leafext_update_add_page() {
 		$submenu = leafext_submenu_of();
 		// Add Submenu.
@@ -178,18 +206,16 @@ if ( ! is_main_site() ) {
 	add_action( 'admin_menu', 'leafext_update_add_page', 100 );
 
 } else {
-	// leaflet Map not active, create new Leaflet Menu
+	// plugins not active, create new Menu
 	function leafext_add_page_single() {
 		$submenu = leafext_submenu_of();
-		// from Leaflet Map Plugin
-		$leaf = 'data:image/svg+xml;base64,PHN2ZyBhcmlhLWhpZGRlbj0idHJ1ZSIgZm9jdXNhYmxlPSJmYWxzZSIgZGF0YS1wcmVmaXg9ImZhcyIgZGF0YS1pY29uPSJsZWFmIiBjbGFzcz0ic3ZnLWlubGluZS0tZmEgZmEtbGVhZiBmYS13LTE4IiByb2xlPSJpbWciIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgdmlld0JveD0iMCAwIDU3NiA1MTIiPjxwYXRoIGZpbGw9ImN1cnJlbnRDb2xvciIgZD0iTTU0Ni4yIDkuN2MtNS42LTEyLjUtMjEuNi0xMy0yOC4zLTEuMkM0ODYuOSA2Mi40IDQzMS40IDk2IDM2OCA5NmgtODBDMTgyIDk2IDk2IDE4MiA5NiAyODhjMCA3IC44IDEzLjcgMS41IDIwLjVDMTYxLjMgMjYyLjggMjUzLjQgMjI0IDM4NCAyMjRjOC44IDAgMTYgNy4yIDE2IDE2cy03LjIgMTYtMTYgMTZDMTMyLjYgMjU2IDI2IDQxMC4xIDIuNCA0NjhjLTYuNiAxNi4zIDEuMiAzNC45IDE3LjUgNDEuNiAxNi40IDYuOCAzNS0xLjEgNDEuOC0xNy4zIDEuNS0zLjYgMjAuOS00Ny45IDcxLjktOTAuNiAzMi40IDQzLjkgOTQgODUuOCAxNzQuOSA3Ny4yQzQ2NS41IDQ2Ny41IDU3NiAzMjYuNyA1NzYgMTU0LjNjMC01MC4yLTEwLjgtMTAyLjItMjkuOC0xNDQuNnoiLz48L3N2Zz4=';
 		add_menu_page(
 			$submenu['slug'],
 			$submenu['name'],
 			'manage_options',
 			$submenu['slug'], // parent slug
 			'none', // fake
-			$leaf // icon
+			$submenu['icon'] // icon
 		);
 		add_submenu_page(
 			$submenu['slug'],  // parent slug
@@ -228,7 +254,6 @@ function leafext_update_admin() {
 }
 
 function leafext_table_repos() {
-
 	$slugs = array_keys( leafext_get_repos() );
 	$table = array();
 
@@ -236,13 +261,17 @@ function leafext_table_repos() {
 		$leafext_plugins = glob( WP_PLUGIN_DIR . '/*/' . $slug . '.php/' );
 		if ( count( $leafext_plugins ) > 0 ) {
 			foreach ( $leafext_plugins as $leafext_plugin ) {
-				$entry           = array();
-				$plugin_data     = get_plugin_data( $leafext_plugin );
-				$entry['name']   = $plugin_data['Name'];
+				$entry         = array();
+				$plugin_data   = get_plugin_data( $leafext_plugin );
+				$entry['name'] = $plugin_data['Name'];
 				if ( strpos( $plugin_data['UpdateURI'], 'https://github.com/hupe13/' ) !== false ) {
-					$entry['hosted']   = 'Github';
+					$entry['hosted'] = 'Github';
+				} elseif ( file_exists( dirname( $leafext_plugin ) . '/github' ) ) {
+					$entry['hosted'] = 'Github';
+				} elseif ( strpos( $plugin_data['PluginURI'], 'https://github.com/hupe13/' ) !== false ) {
+					$entry['hosted'] = 'Github';
 				} else {
-					$entry['hosted']   = 'WordPress';
+					$entry['hosted'] = 'WordPress';
 				}
 				$entry['active'] = array();
 				$blogs           = array();

@@ -83,25 +83,50 @@ function album_medialib_validate( $input ) {
 }
 
 function album_medialib_help() {
-	$text = '
-	<style>li {
-		list-style-type: disc;
-		margin-left: 1.5em;
-	}</style>
-	<ul>
-	<li> Organize your photos in directories. Store the photos for each album in a subdirectory in the WordPress upload directory.</li>
-	<li> I use the following plugins:
-	<ul>
-	 <li> <a href="https://wordpress.org/plugins/bulk-media-register/">Bulk Media Register</a> to import the photos to the Media Library.</li>
-	 <li> <a href="https://wordpress.org/plugins/upload-media-exif-date/">Upload Media Exif Date</a> to store to the date/time of Exif information.</li>
-	 <li> <a href="https://wordpress.org/plugins/exif-caption/">Exif Caption</a> to insert the Exif data to the caption of the media.</li>
-	</ul>
-	</li>
-	<li> Use the default <code>gallery</code> shortcode or install a plugin to display photos from Media Library, which has a shortcode for this, for example <a href="https://wordpress.org/plugins/photonic/">Photonic Gallery & Lightbox for Flickr, SmugMug & Others</a>.</li>
-	<li> Configure the name of this shortcode (default <code>gallery</code>) and the list option (default <code>ids</code>) in admin backend.</li>
-	<li> Write your shortcode as usual, omit the list option and use an extra option <code>path</code>.</li>
-	<li> <code>path</code> is a substring of the directory path, for example <code>holidays25/day1</code>.</li>
-	</ul>
-	';
+	$text  = '<style>li {list-style-type: disc;margin-left: 1.5em;}</style>';
+	$text .= '<ul><li> ';
+	$text .= __( 'Organize your photos in directories. Store the photos for each album in a subdirectory in the WordPress upload directory.', 'album-medialib' );
+	$text .= '</li><li> ';
+	$text .= sprintf(
+		/* translators: %1$s, %2$s is an url, %3$s is a url to a plugin. */
+		__( 'You can use a %1$splugin%2$s to do this. I use %3$s to import the photos to the Media Library, which I uploaded before with sftp.', 'album-medialib' ),
+		'<a href="https://wordpress.org/plugins/search/media+library+folder/">',
+		'</a>',
+		'<a href="https://wordpress.org/plugins/bulk-media-register/">Bulk Media Register</a>'
+	);
+	$text .= '</li><li> ';
+	$text .= sprintf(
+		/* translators: %1$s is "shortcode", %2$s is a url to a plugin. */
+		__( 'Use the default %1$s shortcode or install a plugin to display photos from Media Library, which has a shortcode for this, for example %2$s.', 'album-medialib' ),
+		'<code>gallery</code>',
+		'<a href="https://wordpress.org/plugins/photonic/">Photonic Gallery & Lightbox for Flickr, SmugMug & Others</a>'
+	);
+	$text .= '</li><li> ';
+	$text .= sprintf(
+		/* translators: %1$s is "gallery", %2$s "ids". */
+		__( 'Configure the name of this shortcode (default %1$s) and the list option (default %2$s) in admin backend.', 'album-medialib' ),
+		'<code>gallery</code>',
+		'<code>ids</code>'
+	);
+	$text .= '</li><li> ';
+	$text .= sprintf(
+		/* translators: %s is "path". */
+		__( 'Write your shortcode as usual, omit the list option and use an extra option %s.', 'album-medialib' ),
+		'<code>path</code>'
+	);
+	$text .= '</li><li> ';
+	$text .= sprintf(
+		/* translators: %1$s is "path", %2$s an example. */
+		__( '%1$s is a substring of the directory path, for example %2$s.', 'album-medialib' ),
+		'<code>path</code>',
+		'<code>holidays25/day1</code>'
+	);
+	$text   .= '</li></ul>';
+	$setting = album_medialib_settings();
+	$text   .= '<h3>' . __( 'Shortcode with your gallery plugin', 'album-medialib' ) . '</h3>';
+	$text   .= '<pre><code>&#091;' . $setting['shortcode'] . ' ' . $setting['ids'] . '"1,2,3,4" option1=... option2=...  ...]</code></pre>';
+	$text   .= '<h3>' . __( 'becomes', 'album-medialib' ) . '</h3>';
+	$text   .= '<pre><code>&#091;' . $setting['shortcode'] . ' path="holidays25/day1" option1=... option2=...  ...]</code></pre>';
+
 	return $text;
 }
