@@ -3,7 +3,7 @@
 Contributors: hupe13    
 Tags: albums, media library  
 Tested up to: 6.8  
-Stable tag: 250427     
+Stable tag: 250428     
 Requires at least: 6.8     
 Requires PHP: 8.1     
 License: GPLv2 or later
@@ -32,6 +32,10 @@ BUG: If you have the plugin active on a multisite but not on the main site, plea
 </p>
 
 ## Changelog
+
+### 250428
+
+* Update error on multisite fixed
 
 ### 250427
 

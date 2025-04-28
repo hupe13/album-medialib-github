@@ -3,7 +3,7 @@
  * Plugin Name:       Display photos located below a specific folder from the media library
  * Description:       Organize your photos in folders, select a path and display these photos with any gallery shortcode.
  * Update URI:        https://github.com/hupe13/album-medialib-github
- * Version:           250427
+ * Version:           250428
  * Requires PHP:      8.1
  * Author:            hupe13
  * Author URI:        https://leafext.de/en/

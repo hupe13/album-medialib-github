@@ -114,7 +114,7 @@ function leafext_can_updates() {
 }
 
 function leafext_submenu_of() {
-	$groups                   = array();
+	$groups = array();
 	// from Leaflet Map Plugin
 	$leaf                     = 'data:image/svg+xml;base64,PHN2ZyBhcmlhLWhpZGRlbj0idHJ1ZSIgZm9jdXNhYmxlPSJmYWxzZSIgZGF0YS1wcmVmaXg9ImZhcyIgZGF0YS1pY29uPSJsZWFmIiBjbGFzcz0ic3ZnLWlubGluZS0tZmEgZmEtbGVhZiBmYS13LTE4IiByb2xlPSJpbWciIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgdmlld0JveD0iMCAwIDU3NiA1MTIiPjxwYXRoIGZpbGw9ImN1cnJlbnRDb2xvciIgZD0iTTU0Ni4yIDkuN2MtNS42LTEyLjUtMjEuNi0xMy0yOC4zLTEuMkM0ODYuOSA2Mi40IDQzMS40IDk2IDM2OCA5NmgtODBDMTgyIDk2IDk2IDE4MiA5NiAyODhjMCA3IC44IDEzLjcgMS41IDIwLjVDMTYxLjMgMjYyLjggMjUzLjQgMjI0IDM4NCAyMjRjOC44IDAgMTYgNy4yIDE2IDE2cy03LjIgMTYtMTYgMTZDMTMyLjYgMjU2IDI2IDQxMC4xIDIuNCA0NjhjLTYuNiAxNi4zIDEuMiAzNC45IDE3LjUgNDEuNiAxNi40IDYuOCAzNS0xLjEgNDEuOC0xNy4zIDEuNS0zLjYgMjAuOS00Ny45IDcxLjktOTAuNiAzMi40IDQzLjkgOTQgODUuOCAxNzQuOSA3Ny4yQzQ2NS41IDQ2Ny41IDU3NiAzMjYuNyA1NzYgMTU0LjNjMC01MC4yLTEwLjgtMTAyLjItMjkuOC0xNDQuNnoiLz48L3N2Zz4=';
 	$groups['leaflet-map']    = array(
@@ -125,23 +125,27 @@ function leafext_submenu_of() {
 		'name' => 'Album Media Library',
 		'icon' => '',
 	);
-	foreach ( $groups as $key => $group ) {
-		$exist = preg_grep( '/' . $key . '/', array_keys( leafext_get_repos() ) );
-		if ( count( $exist ) > 0 ) {
-			$submenu = array(
-				'slug' => $key,
-				'name' => $group['name'],
-				'icon' => $group['icon'],
-			);
-			return $submenu;
+	$git_repos                = leafext_get_repos();
+	foreach ( $git_repos as $git_repo => $value ) {
+		if ( is_plugin_active( plugin_basename( $git_repos[ $git_repo ]['local'] ) ) ) {
+			foreach ( $groups as $key => $group ) {
+				if ( strpos( $git_repos[ $git_repo ]['local'], $key ) !== false ) {
+					$github_menu = array(
+						'slug' => $key,
+						'name' => $group['name'],
+						'icon' => $group['icon'],
+					);
+					return $github_menu;
+				}
+			}
 		}
 	}
-	$submenu = array(
-		'slug' => 'setting',
+	$github_menu = array(
+		'slug' => 'github',
 		'name' => 'Github',
 		'icon' => '',
 	);
-	return $submenu;
+	return $github_menu;
 }
 
 if ( ! is_main_site() ) {
@@ -177,10 +181,10 @@ if ( ! is_main_site() ) {
 	}
 
 	function leafext_update_add_page() {
-		$submenu = leafext_submenu_of();
+		$github_menu = leafext_submenu_of();
 		// Add Submenu.
-		$leafext_admin_page = add_submenu_page(
-			$submenu['slug'],
+		add_submenu_page(
+			$github_menu['slug'],
 			'Github Update Options',
 			'Github Update',
 			'manage_options',
@@ -190,56 +194,59 @@ if ( ! is_main_site() ) {
 	}
 	add_action( 'admin_menu', 'leafext_update_add_page', 100 );
 
-} elseif ( defined( 'ALBUM_MEDIALIB_NAME' ) || is_plugin_active( 'leaflet-map/leaflet-map.php' ) ) { // on main site
-	function leafext_update_add_page() {
-		$submenu = leafext_submenu_of();
-		// Add Submenu.
-		$leafext_admin_page = add_submenu_page(
-			$submenu['slug'],
-			'Github Update',
-			'Github Update',
-			'manage_options',
-			'github-settings',
-			'leafext_update_admin'
-		);
-	}
-	add_action( 'admin_menu', 'leafext_update_add_page', 100 );
-
 } else {
-	// plugins not active, create new Menu
-	function leafext_add_page_single() {
-		$submenu = leafext_submenu_of();
-		add_menu_page(
-			$submenu['slug'],
-			$submenu['name'],
-			'manage_options',
-			$submenu['slug'], // parent slug
-			'none', // fake
-			$submenu['icon'] // icon
-		);
-		add_submenu_page(
-			$submenu['slug'],  // parent slug
-			'',
-			'',
-			'manage_options',
-			$submenu['slug'],
-			'none',
-		);
-		add_submenu_page(
-			$submenu['slug'], // parent page slug
-			'Github Update',
-			'Github Update',
-			'manage_options',
-			'github-settings',
-			'leafext_update_admin'
-		);
-		// remove fake
-		remove_submenu_page(
-			$submenu['slug'],
-			$submenu['slug']
-		);
+	$github_menu = leafext_submenu_of();
+	if ( $github_menu['slug'] !== 'github' ) {
+		function leafext_update_add_page() {
+			$github_menu = leafext_submenu_of();
+			// Add Submenu.
+			add_submenu_page(
+				$github_menu['slug'],
+				'Github Update',
+				'Github Update',
+				'manage_options',
+				'github-settings',
+				'leafext_update_admin'
+			);
+		}
+		add_action( 'admin_menu', 'leafext_update_add_page', 100 );
+
+	} else {
+		// plugins not active, create new Menu
+		function leafext_add_page_single() {
+			$github_menu = leafext_submenu_of();
+			add_menu_page(
+				$github_menu['slug'],
+				$github_menu['name'],
+				'manage_options',
+				$github_menu['slug'], // parent slug
+				'none', // fake
+				$github_menu['icon'] // icon
+			);
+			add_submenu_page(
+				$github_menu['slug'],  // parent slug
+				'',
+				'',
+				'manage_options',
+				$github_menu['slug'],
+				'none',
+			);
+			add_submenu_page(
+				$github_menu['slug'], // parent page slug
+				'Github Update',
+				'Github Update',
+				'manage_options',
+				'github-settings',
+				'leafext_update_admin'
+			);
+			// remove fake
+			remove_submenu_page(
+				$github_menu['slug'],
+				$github_menu['slug']
+			);
+		}
+		add_action( 'admin_menu', 'leafext_add_page_single' );
 	}
-	add_action( 'admin_menu', 'leafext_add_page_single' );
 }
 
 // Admin page for the plugin
