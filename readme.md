@@ -17,8 +17,6 @@ Organize your photos in folders, select a path and display these photos with any
 You will get updates with the [Plugin Update Checker](https://github.com/YahnisElsts/plugin-update-checker).
 Maybe you need a Github token.
 
-BUG: If you have the plugin active on a multisite but not on the main site, please install [Updates for plugins from hupe13 hosted on Github](https://github.com/hupe13/leafext-update-github)!
-
 ## Howto
 <p>
 <ul>
