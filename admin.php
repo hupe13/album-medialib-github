@@ -88,11 +88,12 @@ function album_medialib_validate( $input ) {
 		if ( isset( $_POST['delete'] ) ) {
 			delete_option( 'album_medialib' );
 			// delete transients
+			global $wpdb;
 			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
-			$query = $wpdb->get_col( $wpdb->prepare( "SELECT option_name FROM $wpdb->options WHERE option_name LIKE(%s)", '_transient_album_medialib\_%' ) );
+			$query = $wpdb->get_col( $wpdb->prepare( "SELECT option_name FROM $wpdb->options WHERE option_name LIKE(%s)", '\_transient\_album\_medialib\_%' ) );
 			if ( $query ) {
 				foreach ( $query as $option_name ) {
-					delete_transient( $option_name );
+					delete_transient( str_replace( '_transient_', '', $option_name ) );
 				}
 			}
 		}
