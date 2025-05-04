@@ -66,17 +66,35 @@ function album_medialib_form( $field ) {
 	} else {
 		$disabled = '';
 	}
-	echo '<input ' . esc_attr( $disabled ) . 'name="album_medialib[' . esc_attr( $field ) . ']" value="' . esc_attr( $setting[ $field ] ) . '"' . esc_attr( $setting[ $field ] ) . '/>';
+	if ( is_bool( $setting[ $field ] ) ) {
+		echo '<input ' . esc_attr( $disabled ) . ' type="radio" name="album_medialib[' . esc_attr( $field ) . ']" value="1" ';
+		echo $setting[ $field ] ? 'checked' : '';
+		echo '> true &nbsp;&nbsp; ';
+		echo '<input ' . esc_attr( $disabled ) . ' type="radio" name="album_medialib[' . esc_attr( $field ) . ']" value="0" ';
+		echo ( ! $setting[ $field ] ) ? 'checked' : '';
+		echo '> false ';
+	} else {
+		echo '<input ' . esc_attr( $disabled ) . 'name="album_medialib[' . esc_attr( $field ) . ']" value="' . esc_attr( $setting[ $field ] ) . '"' . esc_attr( $setting[ $field ] ) . '/>';
+	}
 }
 
 // Sanitize and validate input. Accepts an array, return a sanitized array.
 function album_medialib_validate( $input ) {
 	if ( ! empty( $_POST ) && check_admin_referer( 'album_medialib', 'album_medialib_nonce' ) ) {
 		if ( isset( $_POST['submit'] ) ) {
+			$input['transients'] = (bool) ( $input['transients'] );
 			return $input;
 		}
 		if ( isset( $_POST['delete'] ) ) {
 			delete_option( 'album_medialib' );
+			// delete transients
+			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
+			$query = $wpdb->get_col( $wpdb->prepare( "SELECT option_name FROM $wpdb->options WHERE option_name LIKE(%s)", '_transient_album_medialib\_%' ) );
+			if ( $query ) {
+				foreach ( $query as $option_name ) {
+					delete_transient( $option_name );
+				}
+			}
 		}
 		return false;
 	}
@@ -104,7 +122,7 @@ function album_medialib_help() {
 	$text .= '</li><li> ';
 	$text .= sprintf(
 		/* translators: %1$s is "gallery", %2$s "ids". */
-		__( 'Configure the name of this shortcode (default %1$s) and the list option (default %2$s) in admin backend.', 'album-medialib' ),
+		__( 'Configure the name of this shortcode (default %1$s) and the list option (default %2$s).', 'album-medialib' ),
 		'<code>gallery</code>',
 		'<code>ids</code>'
 	);
