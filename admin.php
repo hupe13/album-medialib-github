@@ -20,15 +20,22 @@ function album_medialib_add_page() {
 }
 add_action( 'admin_menu', 'album_medialib_add_page' );
 
-function album_medialib_action_links( $actions ) {
-	$actions[] = '<a href="' . esc_url( admin_url( 'admin.php' ) . '?page=album-medialib' ) . '">' . esc_html__( 'Settings', 'album-medialib' ) . '</a>';
-	return $actions;
-}
-add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), 'album_medialib_action_links' );
+// function album_medialib_add_sub_page() {
+//  add_submenu_page(
+//      'upload.php',
+//      __( 'Medialib Album', 'album-medialib' ),
+//      __( 'Medialib Album', 'album-medialib' ),
+//      'manage_options',
+//      'album-medialib',
+//      'album_medialib_admin',
+//  );
+// }
+// add_action( 'admin_menu', 'album_medialib_add_sub_page' );
 
 // Admin page for the plugin
 function album_medialib_admin() {
-	echo '<h3>' . esc_html__( 'Display photos located below a specific folder from the media library', 'album-medialib' ) . ' - ' . esc_html__( 'Help and Options', 'album-medialib' ) . '</h3>';
+	echo '<h2>' . esc_html__( 'Album of photos from a folder in the Media Library', 'album-medialib' ) . '</h2>';
+	echo '<h3>' . esc_html__( 'Help and Options', 'album-medialib' ) . '</h3>';
 	$allowed_html          = wp_kses_allowed_html( 'post' );
 	$allowed_html['style'] = true;
 	echo wp_kses( album_medialib_help(), $allowed_html );
@@ -102,15 +109,21 @@ function album_medialib_validate( $input ) {
 }
 
 function album_medialib_help() {
-	$text  = '<style>li {list-style-type: disc;margin-left: 1.5em;}</style>';
+	$text  = '<style>li {list-style-type: disc;margin-left: 1.5em;}ul {max-width: 750px;}</style>';
 	$text .= '<ul><li> ';
 	$text .= __( 'Organize your photos in directories. Store the photos for each album in a subdirectory in the WordPress upload directory.', 'album-medialib' );
+	$text .= ' ' . sprintf(
+		/* translators: %1$s, %2$s is an url. */
+		__( 'You can use a %1$splugin%2$s to do this.', 'album-medialib' ),
+		'<a href="https://wordpress.org/plugins/search/media+library+folder/">',
+		'</a>'
+	);
+	$text .= '</li><li> ';
+	$text .= __( 'Import these photos to the Media Library. Maybe your plugin has this function too.', 'album-medialib' );
 	$text .= '</li><li> ';
 	$text .= sprintf(
-		/* translators: %1$s, %2$s is an url, %3$s is a url to a plugin. */
-		__( 'You can use a %1$splugin%2$s to do this. I use %3$s to import the photos to the Media Library, which I uploaded before with sftp.', 'album-medialib' ),
-		'<a href="https://wordpress.org/plugins/search/media+library+folder/">',
-		'</a>',
+		/* translators: %1$s is a url to a plugin. */
+		__( 'I use %1$s to import the photos to the Media Library, which I uploaded before with sftp.', 'album-medialib' ),
 		'<a href="https://wordpress.org/plugins/bulk-media-register/">Bulk Media Register</a>'
 	);
 	$text .= '</li><li> ';

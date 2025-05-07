@@ -1,9 +1,9 @@
-# Display photos located below a specific folder from the media library
+#  Album of photos from a folder in the Media Library
 
 Contributors: hupe13    
-Tags: albums, media library  
+Tags: albums, Media Library  
 Tested up to: 6.8  
-Stable tag: 250505     
+Stable tag: 250507     
 Requires at least: 6.8     
 Requires PHP: 8.1     
 License: GPLv2 or later
@@ -20,8 +20,9 @@ Maybe you need a Github token.
 ## Howto
 <p>
 <ul>
-<li> Organize your photos in directories. Store the photos for each album in a subdirectory in the WordPress upload directory.</li>
-<li> You can use a <a href="https://wordpress.org/plugins/search/media+library+folder/">plugin</a> to do this. I use <a href="https://wordpress.org/plugins/bulk-media-register/">Bulk Media Register</a> to import the photos to the Media Library, which I uploaded before with sftp.</li>
+<li> Organize your photos in directories. Store the photos for each album in a subdirectory in the WordPress upload directory. You can use a <a href="https://wordpress.org/plugins/search/media+library+folder/">plugin</a> to do this.</li>
+<li> Import these photos to the Media Library. Maybe your plugin has this function too.</li>
+<li> I use <a href="https://wordpress.org/plugins/bulk-media-register/">Bulk Media Register</a> to import the photos to the Media Library, which I uploaded before with sftp.</li>
 <li> Use the default <code>gallery</code> shortcode or install a plugin to display photos from Media Library, which has a shortcode for this, for example <a href="https://wordpress.org/plugins/photonic/">Photonic Gallery & Lightbox for Flickr, SmugMug & Others</a>.</li>
 <li> Configure the name of this shortcode (default <code>gallery</code>) and the list option (default <code>ids</code>) in admin backend.</li>
 <li> Write your shortcode as usual, omit the list option and use an extra option <code>path</code>.</li>

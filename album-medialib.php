@@ -1,9 +1,9 @@
 <?php
 /**
- * Plugin Name:       Display photos located below a specific folder from the media library
+ * Plugin Name:       Album of photos from a folder in the Media Library
  * Description:       Organize your photos in folders, select a path and display these photos with any gallery shortcode.
  * Update URI:        https://github.com/hupe13/album-medialib-github
- * Version:           250505
+ * Version:           250507
  * Requires PHP:      8.1
  * Author:            hupe13
  * Author URI:        https://leafext.de/en/
@@ -130,6 +130,12 @@ if ( is_admin() ) {
 	define( 'ALBUM_MEDIALIB_DIR', plugin_dir_path( __FILE__ ) ); // /pfad/wp-content/plugins/album-medialib-github/ .
 	// define( 'ALBUM_MEDIALIB_URL', WP_PLUGIN_URL . '/' . basename( ALBUM_MEDIALIB_DIR ) ); // https://url/wp-content/plugins/album-medialib-github/ .
 	define( 'ALBUM_MEDIALIB_NAME', basename( ALBUM_MEDIALIB_DIR ) ); // album-medialib-github
+
+	function album_medialib_action_links( $actions ) {
+		$actions[] = '<a href="' . esc_url( get_admin_url( null, 'upload.php?page=album-medialib' ) ) . '">' . esc_html__( 'Settings', 'album-medialib' ) . '</a>';
+		return $actions;
+	}
+	add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), 'album_medialib_action_links' );
 
 	include_once ALBUM_MEDIALIB_DIR . 'admin.php';
 	require_once ALBUM_MEDIALIB_DIR . 'github-backend-album-medialib.php';
