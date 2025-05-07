@@ -32,6 +32,11 @@ Maybe you need a Github token.
 
 ## Changelog
 
+### 250507
+
+* Menus
+* documentation
+
 ### 250504
 
 * Use transients
