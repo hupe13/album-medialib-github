@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Display photos selected by path from the Media Library\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-04-25 10:13+0000\n"
-"PO-Revision-Date: 2025-05-07 12:45+0000\n"
+"PO-Revision-Date: 2025-05-08 19:14+0000\n"
 "Last-Translator: hupe13\n"
 "Language-Team: Deutsch\n"
 "Language: de_DE\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Loco https://localise.biz/\n"
-"X-Loco-Version: 2.7.2; wp-6.8\n"
+"X-Loco-Version: 2.7.2; wp-6.8.1\n"
 "X-Domain: album-medialib"
 
 #. %1$s is "path", %2$s an example.
@@ -27,9 +27,23 @@ msgstr ""
 msgid "Album of photos from a folder in the Media Library"
 msgstr "Album mit Fotos aus einem Ordner in der Medienbibliothek"
 
-#: admin.php:160
+#: admin.php:189
 msgid "becomes"
 msgstr "wird zu"
+
+#. %s are options.
+#: admin.php:181
+#, php-format
+msgid "Change %1$s to %2$s."
+msgstr "Ändere  %1$s zu %2$s."
+
+#: admin.php:167
+msgid "Choose as Gallery Source \"WordPress\"."
+msgstr "Wähle als Galeriequelle \"WordPress\"."
+
+#: admin.php:169
+msgid "Choose as Type of Gallery \"Photos from Media Library\"."
+msgstr "Wähle als Galerietyp \"Fotos aus der Medienbibliothek\"."
 
 #. %1$s is "gallery", %2$s "ids".
 #: admin.php:139
@@ -43,6 +57,10 @@ msgid ""
 msgstr ""
 "Konfiguriere den Namen dieses Shortcodes (Standard %1$s) und die List-Option "
 "(Standard %2$s)."
+
+#: admin.php:175
+msgid "Configure Your Layout."
+msgstr "Konfiguriere dein Layout."
 
 #: admin.php:38
 msgid "Help and Options"
@@ -74,7 +92,15 @@ msgstr ""
 "Importiere diese Fotos in die Medienbibliothek. Vielleich hat dein Plugin "
 "auch diese Funktion."
 
-#: admin.php:14
+#: admin.php:177
+msgid ""
+"In window \"Your Gallery\" select the shortcode and paste this into a "
+"Shortcode block."
+msgstr ""
+"Wähle den Shortcode im Fenster \"Deine Galerie\" aus und füge ihn in einen "
+"Shortcode-Block ein."
+
+#: admin.php:14 admin.php:26 admin.php:27
 msgid "Medialib Album"
 msgstr "Medien Album"
 
@@ -101,19 +127,27 @@ msgstr ""
 "Organisiere deine Fotos in Ordnern, wähle einen Pfad und zeige diese Fotos "
 "mit einem beliebigen Galerie-Shortcode an."
 
+#: admin.php:173
+msgid "Pick Your Layout."
+msgstr "Wähle dein Layout."
+
 #: admin.php:52
 msgid "Reset"
 msgstr "Zurücksetzen"
+
+#: admin.php:171
+msgid "Select one any photo."
+msgstr "Wähle irgendein Foto."
 
 #: album-medialib.php:135
 msgid "Settings"
 msgstr "Einstellungen"
 
-#: admin.php:158
+#: admin.php:187
 msgid "Shortcode with your gallery plugin"
 msgstr "Der Shortcode mit deinem Galerie-Plugin"
 
-#. %1$s is "shortcode", %2$s is a url to a plugin.
+#. %1$s is "gallery".
 #: admin.php:132
 #, php-format
 msgid ""
@@ -124,6 +158,11 @@ msgstr ""
 "von Fotos aus der Medienbibliothek, das über einen entsprechenden Shortcode "
 "verfügt, zum Beispiel %2$s."
 
+#: admin.php:165
+msgid "Use the Photonic Gallery block to generate the display of photos."
+msgstr ""
+"Verwende den Photonic Gallery Block, um die Anzeige der Fotos zu generieren."
+
 #. %s is "false".
 #: album-medialib.php:35
 #, php-format
@@ -133,6 +172,12 @@ msgid ""
 msgstr ""
 "Verwende Transienten - Setze es auf %s, wenn du Schwierigkeiten hast, die "
 "richtigen Bilder in ein Album zu bekommen."
+
+#. %s is a plugin.
+#: admin.php:160
+#, php-format
+msgid "Workflow using the example of %s"
+msgstr "Workflow am Beispiel von %s"
 
 #. %s is "path".
 #: admin.php:146

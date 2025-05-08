@@ -3,8 +3,8 @@
 Contributors: hupe13    
 Tags: albums, Media Library  
 Tested up to: 6.8  
-Stable tag: 250507     
-Requires at least: 6.8     
+Stable tag: 250508     
+Requires at least: 6.7     
 Requires PHP: 8.1     
 License: GPLv2 or later
 

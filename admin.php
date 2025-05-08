@@ -20,17 +20,17 @@ function album_medialib_add_page() {
 }
 add_action( 'admin_menu', 'album_medialib_add_page' );
 
-// function album_medialib_add_sub_page() {
-//  add_submenu_page(
-//      'upload.php',
-//      __( 'Medialib Album', 'album-medialib' ),
-//      __( 'Medialib Album', 'album-medialib' ),
-//      'manage_options',
-//      'album-medialib',
-//      'album_medialib_admin',
-//  );
-// }
-// add_action( 'admin_menu', 'album_medialib_add_sub_page' );
+function album_medialib_add_sub_page() {
+	add_submenu_page(
+		'upload.php',
+		__( 'Medialib Album', 'album-medialib' ),
+		__( 'Medialib Album', 'album-medialib' ),
+		'manage_options',
+		'album-medialib',
+		'album_medialib_admin',
+	);
+}
+add_action( 'admin_menu', 'album_medialib_add_sub_page' );
 
 // Admin page for the plugin
 function album_medialib_admin() {
@@ -128,10 +128,10 @@ function album_medialib_help() {
 	);
 	$text .= '</li><li> ';
 	$text .= sprintf(
-		/* translators: %1$s is "shortcode", %2$s is a url to a plugin. */
+		/* translators: %1$s is "gallery", %2$s is "Photonic" */
 		__( 'Use the default %1$s shortcode or install a plugin to display photos from Media Library, which has a shortcode for this, for example %2$s.', 'album-medialib' ),
 		'<code>gallery</code>',
-		'<a href="https://wordpress.org/plugins/photonic/">Photonic Gallery & Lightbox for Flickr, SmugMug & Others</a>'
+		'Photonic'
 	);
 	$text .= '</li><li> ';
 	$text .= sprintf(
@@ -153,12 +153,40 @@ function album_medialib_help() {
 		'<code>path</code>',
 		'<code>holidays25/day1</code>'
 	);
+	$text .= '</li></ul>';
+	$text .= '<h3>';
+	$text .= sprintf(
+		/* translators: %s is a plugin. */
+		__( 'Workflow using the example of %s', 'album-medialib' ),
+		'<a href="https://wordpress.org/plugins/photonic/">Photonic Gallery & Lightbox for Flickr, SmugMug & Others</a>'
+	);
+	$text .= '</h3>';
+	$text .= '<ul><li> ';
+	$text .= __( 'Use the Photonic Gallery block to generate the display of photos.', 'album-medialib' );
+	$text .= '</li><li> ';
+	$text .= __( 'Choose as Gallery Source "WordPress".', 'album-medialib' );
+	$text .= '</li><li> ';
+	$text .= __( 'Choose as Type of Gallery "Photos from Media Library".', 'album-medialib' );
+	$text .= '</li><li> ';
+	$text .= __( 'Select one any photo.', 'album-medialib' );
+	$text .= '</li><li> ';
+	$text .= __( 'Pick Your Layout.', 'album-medialib' );
+	$text .= '</li><li> ';
+	$text .= __( 'Configure Your Layout.', 'album-medialib' );
+	$text .= '</li><li> ';
+	$text .= __( 'In window "Your Gallery" select the shortcode and paste this into a Shortcode block.', 'album-medialib' );
+	$text .= '</li><li> ';
+	$text .= sprintf(
+		/* translators: %s are options. */
+		__( 'Change %1$s to %2$s.', 'album-medialib' ),
+		'<code>ids=...</code>',
+		'<code>path=holidays25/day1</code>'
+	);
 	$text   .= '</li></ul>';
 	$setting = album_medialib_settings();
 	$text   .= '<h3>' . __( 'Shortcode with your gallery plugin', 'album-medialib' ) . '</h3>';
 	$text   .= '<pre><code>&#091;' . $setting['shortcode'] . ' ' . $setting['ids'] . '"1,2,3,4" option1=... option2=...  ...]</code></pre>';
 	$text   .= '<h3>' . __( 'becomes', 'album-medialib' ) . '</h3>';
 	$text   .= '<pre><code>&#091;' . $setting['shortcode'] . ' path="holidays25/day1" option1=... option2=...  ...]</code></pre>';
-
 	return $text;
 }

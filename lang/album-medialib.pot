@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Display photos selected by path from the Media Library\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-07 12:45+0000\n"
+"POT-Creation-Date: 2025-05-08 19:03+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -27,8 +27,22 @@ msgstr ""
 msgid "Album of photos from a folder in the Media Library"
 msgstr ""
 
-#: admin.php:160
+#: admin.php:189
 msgid "becomes"
+msgstr ""
+
+#. %s are options.
+#: admin.php:181
+#, php-format
+msgid "Change %1$s to %2$s."
+msgstr ""
+
+#: admin.php:167
+msgid "Choose as Gallery Source \"WordPress\"."
+msgstr ""
+
+#: admin.php:169
+msgid "Choose as Type of Gallery \"Photos from Media Library\"."
 msgstr ""
 
 #. %1$s is "gallery", %2$s "ids".
@@ -37,6 +51,10 @@ msgstr ""
 msgid ""
 "Configure the name of this shortcode (default %1$s) and the list option "
 "(default %2$s)."
+msgstr ""
+
+#: admin.php:175
+msgid "Configure Your Layout."
 msgstr ""
 
 #: admin.php:38
@@ -65,7 +83,13 @@ msgid ""
 "function too."
 msgstr ""
 
-#: admin.php:14
+#: admin.php:177
+msgid ""
+"In window \"Your Gallery\" select the shortcode and paste this into a "
+"Shortcode block."
+msgstr ""
+
+#: admin.php:14 admin.php:26 admin.php:27
 msgid "Medialib Album"
 msgstr ""
 
@@ -87,24 +111,36 @@ msgid ""
 "any gallery shortcode."
 msgstr ""
 
+#: admin.php:173
+msgid "Pick Your Layout."
+msgstr ""
+
 #: admin.php:52
 msgid "Reset"
+msgstr ""
+
+#: admin.php:171
+msgid "Select one any photo."
 msgstr ""
 
 #: album-medialib.php:135
 msgid "Settings"
 msgstr ""
 
-#: admin.php:158
+#: admin.php:187
 msgid "Shortcode with your gallery plugin"
 msgstr ""
 
-#. %1$s is "shortcode", %2$s is a url to a plugin.
+#. %1$s is "gallery".
 #: admin.php:132
 #, php-format
 msgid ""
 "Use the default %1$s shortcode or install a plugin to display photos from "
 "Media Library, which has a shortcode for this, for example %2$s."
+msgstr ""
+
+#: admin.php:165
+msgid "Use the Photonic Gallery block to generate the display of photos."
 msgstr ""
 
 #. %s is "false".
@@ -113,6 +149,12 @@ msgstr ""
 msgid ""
 "Use transients - Set this to %s, if you have trouble to get the right images "
 "in the album."
+msgstr ""
+
+#. %s is a plugin.
+#: admin.php:160
+#, php-format
+msgid "Workflow using the example of %s"
 msgstr ""
 
 #. %s is "path".
