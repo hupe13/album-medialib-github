@@ -3,7 +3,7 @@
 Contributors: hupe13    
 Tags: albums, Media Library  
 Tested up to: 6.8  
-Stable tag: 250508     
+Stable tag: 250509     
 Requires at least: 6.7     
 Requires PHP: 8.1     
 License: GPLv2 or later
@@ -30,9 +30,14 @@ Maybe you need a Github token.
 </ul>
 </p>
 
+## Installation
+
+* Install the plugin in the usual way.
+* Go to Settings - Media - Media Album - and get documentation and settings options.
+
 ## Changelog
 
-### 250507
+### 250507 - 09
 
 * Menus
 * documentation

@@ -8,23 +8,11 @@
 // Direktzugriff auf diese Datei verhindern.
 defined( 'ABSPATH' ) || die();
 
-function album_medialib_add_page() {
-	add_menu_page(
-		'album-medialib',
-		__( 'Medialib Album', 'album-medialib' ),
-		'manage_options',
-		'album-medialib',
-		'album_medialib_admin',
-		'' // icon
-	);
-}
-add_action( 'admin_menu', 'album_medialib_add_page' );
-
 function album_medialib_add_sub_page() {
 	add_submenu_page(
 		'upload.php',
-		__( 'Medialib Album', 'album-medialib' ),
-		__( 'Medialib Album', 'album-medialib' ),
+		__( 'Media Album', 'album-medialib' ),
+		__( 'Media Album', 'album-medialib' ),
 		'manage_options',
 		'album-medialib',
 		'album_medialib_admin',
@@ -109,7 +97,11 @@ function album_medialib_validate( $input ) {
 }
 
 function album_medialib_help() {
-	$text  = '<style>li {list-style-type: disc;margin-left: 1.5em;}ul {max-width: 750px;}</style>';
+	if ( is_admin() ) {
+		$text = '<style>li {list-style-type: disc;margin-left: 1.5em;}ul {max-width: 750px;}</style>';
+	} else {
+		$text = '';
+	}
 	$text .= '<ul><li> ';
 	$text .= __( 'Organize your photos in directories. Store the photos for each album in a subdirectory in the WordPress upload directory.', 'album-medialib' );
 	$text .= ' ' . sprintf(

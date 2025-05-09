@@ -3,7 +3,7 @@
  * Plugin Name:       Album of photos from a folder in the Media Library
  * Description:       Organize your photos in folders, select a path and display these photos with any gallery shortcode.
  * Update URI:        https://github.com/hupe13/album-medialib-github
- * Version:           250508
+ * Version:           250509
  * Requires PHP:      8.1
  * Author:            hupe13
  * Author URI:        https://leafext.de/en/
@@ -111,14 +111,14 @@ if ( is_admin() ) {
 		$image_path = wp_get_original_image_path( $attachment_id );
 		// var_dump($image_path);
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
-		$query = $wpdb->get_col( $wpdb->prepare( "SELECT option_name FROM $wpdb->options WHERE option_name LIKE(%s)", '_transient_album_medialib\_%' ) );
+		$query = $wpdb->get_col( $wpdb->prepare( "SELECT option_name FROM $wpdb->options WHERE option_name LIKE(%s)", '\_transient\_album\_medialib\_%' ) );
 		if ( $query ) {
 			foreach ( $query as $option_name ) {
 				// var_dump($option_name);
 				$path = str_replace( '_transient_album_medialib_', '', $option_name );
 				// var_dump($path);
 				if ( strpos( $image_path, $path ) !== false ) {
-					delete_transient( $option_name );
+					delete_transient( str_replace( '_transient_', '', $option_name ) );
 				}
 			}
 		}

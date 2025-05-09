@@ -8,6 +8,18 @@
 // Direktzugriff auf diese Datei verhindern.
 defined( 'ABSPATH' ) || die();
 
+function album_medialib_add_page() {
+	add_menu_page(
+		'album-medialib',
+		__( 'Media Album', 'album-medialib' ),
+		'manage_options',
+		'album-medialib',
+		'album_medialib_admin',
+		'' // icon
+	);
+}
+add_action( 'admin_menu', 'album_medialib_add_page' );
+
 // for translating a plugin
 function album_medialib_textdomain() {
 	if ( get_locale() === 'de_DE' ) {
