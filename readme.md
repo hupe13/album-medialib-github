@@ -1,9 +1,9 @@
-#  Album of photos from a folder in the Media Library
+#  Album of photos from a folder in the Media Library Github
 
 Contributors: hupe13    
 Tags: albums, Media Library  
 Tested up to: 6.8  
-Stable tag: 250509     
+Stable tag: 250530     
 Requires at least: 6.7     
 Requires PHP: 8.1     
 License: GPLv2 or later
@@ -37,25 +37,6 @@ Maybe you need a Github token.
 
 ## Changelog
 
-### 250507 - 09
+### 250530
 
-* Menus
-* documentation
-
-### 250504
-
-* Use transients
-
-### 250428
-
-* Update error on multisite fixed
-
-### 250427
-
-* german translation
-* update procedure for all my plugins adjusted
-* php warning about path fixed
-
-### 250425
-
-* Everything revised and new procedure
+* First Release of the WordPress plugin

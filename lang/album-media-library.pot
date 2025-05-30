@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Display photos selected by path from the Media Library\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-09 17:55+0000\n"
+"POT-Creation-Date: 2025-05-30 21:08+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -14,47 +14,62 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Loco https://localise.biz/\n"
 "X-Loco-Version: 2.7.2; wp-6.8\n"
-"X-Domain: album-medialib"
+"X-Domain: album-media-library"
 
 #. %1$s is "path", %2$s an example.
-#: admin.php:144
+#: admin.php:166
 #, php-format
 msgid "%1$s is a substring of the directory path, for example %2$s."
 msgstr ""
 
-#. Name of the plugin
 #: admin.php:25
 msgid "Album of photos from a folder in the Media Library"
 msgstr ""
 
-#: admin.php:181
+#. Name of the plugin
+msgid "Album of photos from a folder in the Media Library Github"
+msgstr ""
+
+#: admin.php:203
 msgid "becomes"
 msgstr ""
 
 #. %s are options.
-#: admin.php:173
+#: admin.php:195
 #, php-format
 msgid "Change %1$s to %2$s."
 msgstr ""
 
-#: admin.php:159
+#: admin.php:181
 msgid "Choose as Gallery Source \"WordPress\"."
 msgstr ""
 
-#: admin.php:161
+#: admin.php:183
 msgid "Choose as Type of Gallery \"Photos from Media Library\"."
 msgstr ""
 
 #. %1$s is "gallery", %2$s "ids".
-#: admin.php:131
+#: admin.php:153
 #, php-format
 msgid ""
 "Configure the name of this shortcode (default %1$s) and the list option "
 "(default %2$s)."
 msgstr ""
 
-#: admin.php:167
+#: admin.php:189
 msgid "Configure Your Layout."
+msgstr ""
+
+#: album-media-library.php:45 admin.php:95
+msgid "Delete transients"
+msgstr ""
+
+#. %s is "false".
+#: album-media-library.php:36
+#, php-format
+msgid ""
+"Delete transients or set it to %s, if you have trouble to get the right "
+"images in the album."
 msgstr ""
 
 #: admin.php:26
@@ -62,7 +77,7 @@ msgid "Help and Options"
 msgstr ""
 
 #. Author URI of the plugin
-msgid "https://leafext.de/en/"
+msgid "https://leafext.de/hp/"
 msgstr ""
 
 #. Author of the plugin
@@ -70,36 +85,36 @@ msgid "hupe13"
 msgstr ""
 
 #. %1$s is a url to a plugin.
-#: admin.php:118
+#: admin.php:140
 #, php-format
 msgid ""
 "I use %1$s to import the photos to the Media Library, which I uploaded "
 "before with sftp."
 msgstr ""
 
-#: admin.php:114
+#: admin.php:136
 msgid ""
 "Import these photos to the Media Library. Maybe your plugin has this "
 "function too."
 msgstr ""
 
-#: admin.php:169
+#: admin.php:191
 msgid ""
 "In window \"Your Gallery\" select the shortcode and paste this into a "
 "Shortcode block."
 msgstr ""
 
-#: github-backend-album-medialib.php:14 admin.php:14 admin.php:15
+#: admin.php:14 admin.php:15
 msgid "Media Album"
 msgstr ""
 
 #. %s is an option.
-#: album-medialib.php:28
+#: album-media-library.php:28
 #, php-format
 msgid "Name of the %s option"
 msgstr ""
 
-#: admin.php:106
+#: admin.php:128
 msgid ""
 "Organize your photos in directories. Store the photos for each album in a "
 "subdirectory in the WordPress upload directory."
@@ -111,7 +126,7 @@ msgid ""
 "any gallery shortcode."
 msgstr ""
 
-#: admin.php:165
+#: admin.php:187
 msgid "Pick Your Layout."
 msgstr ""
 
@@ -119,46 +134,42 @@ msgstr ""
 msgid "Reset"
 msgstr ""
 
-#: admin.php:163
+#: admin.php:185
 msgid "Select one any photo."
 msgstr ""
 
-#: album-medialib.php:135
+#: album-media-library.php:140
 msgid "Settings"
 msgstr ""
 
-#: admin.php:179
+#: admin.php:201
 msgid "Shortcode with your gallery plugin"
 msgstr ""
 
 #. %1$s is "gallery", %2$s is "Photonic"
-#: admin.php:124
+#: admin.php:146
 #, php-format
 msgid ""
 "Use the default %1$s shortcode or install a plugin to display photos from "
 "Media Library, which has a shortcode for this, for example %2$s."
 msgstr ""
 
-#: admin.php:157
+#: admin.php:179
 msgid "Use the Photonic Gallery block to generate the display of photos."
 msgstr ""
 
-#. %s is "false".
-#: album-medialib.php:35
-#, php-format
-msgid ""
-"Use transients - Set this to %s, if you have trouble to get the right images "
-"in the album."
+#: album-media-library.php:33
+msgid "Use transients"
 msgstr ""
 
 #. %s is a plugin.
-#: admin.php:152
+#: admin.php:174
 #, php-format
 msgid "Workflow using the example of %s"
 msgstr ""
 
 #. %s is "path".
-#: admin.php:138
+#: admin.php:160
 #, php-format
 msgid ""
 "Write your shortcode as usual, omit the list option and use an extra option "
@@ -166,11 +177,11 @@ msgid ""
 msgstr ""
 
 #. %1$s, %2$s is an url.
-#: admin.php:109
+#: admin.php:131
 #, php-format
 msgid "You can use a %1$splugin%2$s to do this."
 msgstr ""
 
-#: album-medialib.php:22
+#: album-media-library.php:22
 msgid "Your Shortcode"
 msgstr ""

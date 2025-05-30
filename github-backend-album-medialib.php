@@ -8,22 +8,10 @@
 // Direktzugriff auf diese Datei verhindern.
 defined( 'ABSPATH' ) || die();
 
-function album_medialib_add_page() {
-	add_menu_page(
-		'album-medialib',
-		__( 'Media Album', 'album-medialib' ),
-		'manage_options',
-		'album-medialib',
-		'album_medialib_admin',
-		'' // icon
-	);
-}
-add_action( 'admin_menu', 'album_medialib_add_page' );
-
 // for translating a plugin
 function album_medialib_textdomain() {
 	if ( get_locale() === 'de_DE' ) {
-		load_plugin_textdomain( 'album-medialib', false, ALBUM_MEDIALIB_NAME . '/lang/' );
+		load_plugin_textdomain( 'album-media-library', false, ALBUM_MEDIALIB_NAME . '/lang/' );
 	}
 }
 add_action( 'plugins_loaded', 'album_medialib_textdomain' );
