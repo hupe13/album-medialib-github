@@ -18,17 +18,14 @@ You will get updates with the [Plugin Update Checker](https://github.com/YahnisE
 Maybe you need a Github token.
 
 ## Howto
-<p>
-<ul>
-<li> Organize your photos in directories. Store the photos for each album in a subdirectory in the WordPress upload directory. You can use a <a href="https://wordpress.org/plugins/search/media+library+folder/">plugin</a> to do this.</li>
-<li> Import these photos to the Media Library. Maybe your plugin has this function too.</li>
-<li> I use <a href="https://wordpress.org/plugins/bulk-media-register/">Bulk Media Register</a> to import the photos to the Media Library, which I uploaded before with sftp.</li>
-<li> Use the default `gallery` shortcode or install a plugin to display photos from Media Library, which has a shortcode for this, for example <a href="https://wordpress.org/plugins/photonic/">Photonic Gallery & Lightbox for Flickr, SmugMug & Others</a>.</li>
-<li> Configure the name of this shortcode (default `gallery`) and the list option (default `ids`) in admin backend.</li>
-<li> Write your shortcode as usual, omit the list option and use an extra option `path`.</li>
-<li> `path` is a substring of the directory path, for example `holidays25/day1`.</li>
-</ul>
-</p>
+
+* Organize your photos in directories. Store the photos for each album in a subdirectory in the WordPress upload directory. You can use a <a href="https://wordpress.org/plugins/search/media+library+folder/">plugin</a> to do this.
+* Import these photos to the Media Library. Maybe your plugin has this function too.
+* I use <a href="https://wordpress.org/plugins/bulk-media-register/">Bulk Media Register</a> to import the photos to the Media Library, which I uploaded before with sftp.
+* Use the default `gallery` shortcode or install a plugin to display photos from Media Library, which has a shortcode for this, for example <a href="https://wordpress.org/plugins/photonic/">Photonic Gallery & Lightbox for Flickr, SmugMug & Others</a>.
+* Configure the name of this shortcode (default `gallery`) and the list option (default `ids`) in admin backend.
+* Write your shortcode as usual, omit the list option and use an extra option `path`.
+* `path` is a substring of the directory path, for example `holidays25/day1`.
 
 ## Installation
 
