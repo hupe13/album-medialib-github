@@ -26,7 +26,7 @@ add_action( 'plugins_loaded', 'album_medialib_textdomain' );
 
 // Updates from Github
 function leafext_album_updates() {
-	echo '<h2>' . esc_html__( 'Updates in WordPress way', 'leafext-update-github' ) . '</h2>';
+	echo '<h2>' . esc_html__( 'Updates in WordPress way', 'album-media-library' ) . '</h2>';
 	if ( is_multisite() ) {
 		if ( strpos(
 			implode(
@@ -41,7 +41,7 @@ function leafext_album_updates() {
 						/* translators: %s is a link. */
 						esc_html__(
 							'To manage and receive updates, open %1$sGithub settings%2$s.',
-							'leafext-update-github'
+							'album-media-library'
 						),
 						'<a href="' . esc_url( get_site_url( get_main_site_id() ) ) . '/wp-admin/admin.php?page=github-settings">',
 						'</a>'
@@ -51,7 +51,7 @@ function leafext_album_updates() {
 				/* translators: %s is a link. */
 				esc_html__(
 					'To receive updates, go to the %1$snetwork dashboard%2$s and install and activate %3$s.',
-					'leafext-update-github'
+					'album-media-library'
 				),
 				'<a href="' . esc_url( network_admin_url() ) . 'plugins.php">',
 				'</a>',
@@ -69,7 +69,7 @@ function leafext_album_updates() {
 						/* translators: %s is a link. */
 						esc_html__(
 							'To manage and receive updates, open %1$sGithub settings%2$s.',
-							'leafext-update-github'
+							'album-media-library'
 						),
 						'<a href="' . esc_url( get_site_url( get_main_site_id() ) ) . '/wp-admin/admin.php?page=github-settings">',
 						'</a>'
@@ -79,7 +79,7 @@ function leafext_album_updates() {
 			/* translators: %s is a link. */
 			esc_html__(
 				'To receive updates, go to the %1$sdashboard%2$s and install and activate %3$s.',
-				'leafext-update-github'
+				'album-media-library'
 			),
 			'<a href="' . esc_url( network_admin_url() ) . 'plugins.php">',
 			'</a>',
