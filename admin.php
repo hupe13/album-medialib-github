@@ -23,6 +23,9 @@ add_action( 'admin_menu', 'album_medialib_add_sub_page' );
 // Admin page for the plugin
 function album_medialib_admin() {
 	echo '<h2>' . esc_html__( 'Album of photos from a folder in the Media Library', 'album-media-library' ) . '</h2>';
+	if ( function_exists( 'leafext_album_updates' ) ) {
+		leafext_album_updates();
+	}
 	echo '<h3>' . esc_html__( 'Help and Options', 'album-media-library' ) . '</h3>';
 	$allowed_html          = wp_kses_allowed_html( 'post' );
 	$allowed_html['style'] = true;

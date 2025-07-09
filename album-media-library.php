@@ -1,6 +1,7 @@
 <?php
 /**
  * Plugin Name:       Album of photos from a folder in the Media Library Github
+ * Plugin URI:        https://leafext.de/hp/categories/medialib/
  * Description:       Organize your photos in folders, select a path and display these photos with any gallery shortcode.
  * Update URI:        https://github.com/hupe13/album-medialib-github
  * Version:           250530
@@ -143,5 +144,5 @@ if ( is_admin() ) {
 	add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), 'album_medialib_action_links' );
 
 	include_once ALBUM_MEDIALIB_DIR . 'admin.php';
-	require_once ALBUM_MEDIALIB_DIR . 'github-backend-album-medialib.php';
+	require_once ALBUM_MEDIALIB_DIR . 'github-album-medialib.php';
 }
