@@ -14,8 +14,8 @@ Organize your photos in folders, select a path and display these photos with any
 
 Organize your photos in folders, select a path and display these photos with any gallery shortcode.
 
-You will get updates with the [Plugin Update Checker](https://github.com/YahnisElsts/plugin-update-checker).
-Maybe you need a Github token.
+To get updates with the [Plugin Update Checker](https://github.com/YahnisElsts/plugin-update-checker) please
+install [Updates for plugins from hupe13 hosted on Github](https://github.com/hupe13/leafext-update-github).
 
 ## Howto
 
