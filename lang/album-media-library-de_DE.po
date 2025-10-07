@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Display photos selected by path from the Media Library\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-04-25 10:13+0000\n"
-"PO-Revision-Date: 2025-07-09 20:18+0000\n"
+"PO-Revision-Date: 2025-10-07 12:31+0000\n"
 "Last-Translator: hupe13\n"
 "Language-Team: Deutsch\n"
 "Language: de_DE\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Loco https://localise.biz/\n"
-"X-Loco-Version: 2.7.2; wp-6.8.1\n"
+"X-Loco-Version: 2.8.0; wp-6.8.3; php-8.3.25-nmm1\n"
 "X-Domain: album-medialib"
 
 #. %1$s is "path", %2$s an example.
@@ -114,7 +114,7 @@ msgid ""
 "Import these photos to the Media Library. Maybe your plugin has this "
 "function too."
 msgstr ""
-"Importiere diese Fotos in die Medienbibliothek. Vielleich hat dein Plugin "
+"Importiere diese Fotos in die Medienbibliothek. Vielleicht hat dein Plugin "
 "auch diese Funktion."
 
 #: admin.php:194
@@ -172,38 +172,6 @@ msgstr "Einstellungen"
 #: admin.php:204
 msgid "Shortcode with your gallery plugin"
 msgstr "Der Shortcode mit deinem Galerie-Plugin"
-
-#. %s is a link.
-#: github-album-medialib.php:42 github-album-medialib.php:70
-#, php-format
-msgid "To manage and receive updates, open %1$sGithub settings%2$s."
-msgstr ""
-"Um Updates zu erhalten und zu verwalten, gehe zu den %1$sGithub "
-"Einstellungen%2$s."
-
-#. %s is a link.
-#: github-album-medialib.php:80
-#, php-format
-msgid ""
-"To receive updates, go to the %1$sdashboard%2$s and install and activate "
-"%3$s."
-msgstr ""
-"Um Updates zu erhalten, gehe zum %1$sDashboard%2$s und installiere und "
-"aktiviere %3$s."
-
-#. %s is a link.
-#: github-album-medialib.php:52
-#, php-format
-msgid ""
-"To receive updates, go to the %1$snetwork dashboard%2$s and install and "
-"activate %3$s."
-msgstr ""
-"Um Updates zu erhalten, gehe zum %1$sDashboard%2$s und installiere und "
-"aktiviere %3$s."
-
-#: github-album-medialib.php:29
-msgid "Updates in WordPress way"
-msgstr "Updates auf Art und Weise von WordPress"
 
 #. %1$s is "gallery", %2$s is "Photonic"
 #: admin.php:149

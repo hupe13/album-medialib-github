@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Display photos selected by path from the Media Library\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-09 20:11+0000\n"
+"POT-Creation-Date: 2025-07-10 06:08+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -148,32 +148,6 @@ msgstr ""
 
 #: admin.php:204
 msgid "Shortcode with your gallery plugin"
-msgstr ""
-
-#. %s is a link.
-#: github-album-medialib.php:42 github-album-medialib.php:70
-#, php-format
-msgid "To manage and receive updates, open %1$sGithub settings%2$s."
-msgstr ""
-
-#. %s is a link.
-#: github-album-medialib.php:80
-#, php-format
-msgid ""
-"To receive updates, go to the %1$sdashboard%2$s and install and activate "
-"%3$s."
-msgstr ""
-
-#. %s is a link.
-#: github-album-medialib.php:52
-#, php-format
-msgid ""
-"To receive updates, go to the %1$snetwork dashboard%2$s and install and "
-"activate %3$s."
-msgstr ""
-
-#: github-album-medialib.php:29
-msgid "Updates in WordPress way"
 msgstr ""
 
 #. %1$s is "gallery", %2$s is "Photonic"

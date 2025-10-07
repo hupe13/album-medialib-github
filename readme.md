@@ -3,7 +3,7 @@
 Contributors: hupe13    
 Tags: albums, Media Library  
 Tested up to: 6.8  
-Stable tag: 250530     
+Stable tag: 251007     
 Requires at least: 6.7     
 Requires PHP: 8.1     
 License: GPLv2 or later
@@ -37,3 +37,7 @@ install [Updates for plugins from hupe13 hosted on Github](https://github.com/hu
 ### 250530
 
 * First Release of the WordPress plugin
+
+### 2510xx
+
+* some improvements
