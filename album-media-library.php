@@ -4,7 +4,7 @@
  * Plugin URI:        https://leafext.de/hp/categories/medialib/
  * Description:       Organize your photos in folders, select a path and display these photos with any gallery shortcode.
  * Update URI:        https://github.com/hupe13/album-medialib-github
- * Version:           251011
+ * Version:           251112
  * Requires PHP:      8.1
  * Author:            hupe13
  * Author URI:        https://leafext.de/hp/

@@ -3,7 +3,7 @@
 Contributors: hupe13    
 Tags: albums, Media Library  
 Tested up to: 6.9  
-Stable tag: 251011     
+Stable tag: 251112     
 Requires at least: 6.7     
 Requires PHP: 8.1     
 License: GPLv2 or later
@@ -15,7 +15,7 @@ Organize your photos in folders, select a path and display these photos with any
 Organize your photos in folders, select a path and display these photos with any gallery shortcode.
 
 To get updates with the [Plugin Update Checker](https://github.com/YahnisElsts/plugin-update-checker) please
-install [Updates for plugins from hupe13 hosted on Github](https://github.com/hupe13/leafext-update-github).
+install [ghu-update-puc](https://github.com/hupe13/ghu-update-puc).
 
 ## Howto
 
@@ -34,10 +34,12 @@ install [Updates for plugins from hupe13 hosted on Github](https://github.com/hu
 
 ## Changelog
 
+### 251112
+
+* Tested with WordPress 6.9
+* PCP V 1.7.0 checks reviewed
+* ghu-update-puc
+
 ### 250530
 
 * First Release of the WordPress plugin
-
-### 2510xx
-
-* some improvements
