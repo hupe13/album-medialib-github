@@ -2,8 +2,8 @@
 
 Contributors: hupe13    
 Tags: albums, Media Library  
-Tested up to: 6.8  
-Stable tag: 251007     
+Tested up to: 6.9  
+Stable tag: 251011     
 Requires at least: 6.7     
 Requires PHP: 8.1     
 License: GPLv2 or later

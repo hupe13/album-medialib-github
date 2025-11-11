@@ -4,7 +4,7 @@
  * Plugin URI:        https://leafext.de/hp/categories/medialib/
  * Description:       Organize your photos in folders, select a path and display these photos with any gallery shortcode.
  * Update URI:        https://github.com/hupe13/album-medialib-github
- * Version:           251007
+ * Version:           251011
  * Requires PHP:      8.1
  * Author:            hupe13
  * Author URI:        https://leafext.de/hp/
@@ -138,7 +138,7 @@ if ( is_admin() ) {
 	define( 'ALBUM_MEDIALIB_NAME', basename( ALBUM_MEDIALIB_DIR ) ); // album-media-library
 
 	function album_medialib_action_links( $actions ) {
-		$actions[] = '<a href="' . esc_url( get_admin_url( null, 'upload.php?page='. ALBUM_MEDIALIB_NAME ) ) . '">' . esc_html__( 'Settings', 'album-media-library' ) . '</a>';
+		$actions[] = '<a href="' . esc_url( get_admin_url( null, 'upload.php?page=' . ALBUM_MEDIALIB_NAME ) ) . '">' . esc_html__( 'Settings', 'album-media-library' ) . '</a>';
 		return $actions;
 	}
 	add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), 'album_medialib_action_links' );
