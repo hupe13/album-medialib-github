@@ -34,12 +34,12 @@ install [ghu-update-puc](https://github.com/hupe13/ghu-update-puc).
 
 ## Changelog
 
-### 251112
+### 1.1 / 251113
 
 * Tested with WordPress 6.9
-* PCP V 1.7.0 checks reviewed
+* PCP V 1.7.0 passed
 * ghu-update-puc
 
-### 250530
+### 1.0 / 250530
 
 * First Release of the WordPress plugin
