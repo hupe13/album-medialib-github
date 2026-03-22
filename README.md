@@ -34,6 +34,11 @@ install [ghu-update-puc](https://github.com/hupe13/ghu-update-puc).
 
 ## Changelog
 
+### 1.2 / 260322
+
+* Tested up to WordPress 7.0
+* PHPStan checks - a few issues have been fixed
+
 ### 1.1 / 251113
 
 * Tested with WordPress 6.9
