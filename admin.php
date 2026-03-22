@@ -47,12 +47,20 @@ function album_medialib_admin() {
 
 // Init settings
 function album_medialib_init() {
-	add_settings_section( 'album_medialib_settings', '', '', 'album_medialib_settings' );
+	add_settings_section( 'album_medialib_settings', '', '__return_empty_string', 'album_medialib_settings' );
 	$fields = album_medialib_params();
 	foreach ( $fields as $field ) {
 		add_settings_field( 'album_medialib[' . $field['param'] . ']', $field['desc'], 'album_medialib_form', 'album_medialib_settings', 'album_medialib_settings', $field['param'] );
 	}
-	register_setting( 'album_medialib_settings', 'album_medialib', 'album_medialib_validate' );
+	register_setting(
+		'album_medialib_settings',
+		'album_medialib',
+		array(
+			'type'              => 'array',
+			'sanitize_callback' => 'album_medialib_validate',
+			'default'           => array(),
+		)
+	);
 }
 add_action( 'admin_init', 'album_medialib_init' );
 

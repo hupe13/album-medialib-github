@@ -2,10 +2,10 @@
 
 Contributors: hupe13    
 Tags: albums, Media Library  
-Tested up to: 6.9  
-Stable tag: 251112     
-Requires at least: 6.7     
-Requires PHP: 8.1     
+Tested up to: 7.0  
+Stable tag: 260322     
+Requires at least: 6.2     
+Requires PHP: 8.2     
 License: GPLv2 or later
 
 Organize your photos in folders, select a path and display these photos with any gallery shortcode.

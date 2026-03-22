@@ -3,18 +3,24 @@
  * Plugin Name:       Album of photos from a folder in the Media Library Github
  * Plugin URI:        https://leafext.de/hp/categories/medialib/
  * Description:       Organize your photos in folders, select a path and display these photos with any gallery shortcode.
- * Update URI:        https://github.com/hupe13/album-medialib-github
- * Version:           251112
- * Requires PHP:      8.1
+ * Version:           260322
+ * Requires at least: 6.2
+ * Requires PHP:      8.2
  * Author:            hupe13
  * Author URI:        https://leafext.de/hp/
  * License:           GPL v2 or later
+ * Update URI:        https://github.com/hupe13/album-medialib-github
+ * GitHub Plugin URI: https://github.com/hupe13/album-medialib-github
+ * Primary Branch:    main
  *
  * @package album-medialib
  **/
 
 // Direktzugriff auf diese Datei verhindern.
 defined( 'ABSPATH' ) || die();
+
+define( 'ALBUM_MEDIALIB_DIR', plugin_dir_path( __FILE__ ) ); // /pfad/wp-content/plugins/album-media-library/ .
+define( 'ALBUM_MEDIALIB_NAME', basename( __DIR__ ) ); // album-media-library
 
 function album_medialib_params() {
 	$params = array(
@@ -116,26 +122,23 @@ if ( is_admin() ) {
 		global $wpdb;
 		$image_path = wp_get_original_image_path( $attachment_id );
 		// var_dump($image_path);
+		if ( $image_path !== false ) {
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
-		$query = $wpdb->get_col( $wpdb->prepare( "SELECT option_name FROM $wpdb->options WHERE option_name LIKE(%s)", '\_transient\_album\_medialib\_%' ) );
-		if ( $query ) {
-			foreach ( $query as $option_name ) {
-				// var_dump($option_name);
-				$path = str_replace( '_transient_album_medialib_', '', $option_name );
-				// var_dump($path);
-				if ( strpos( $image_path, $path ) !== false ) {
-					delete_transient( str_replace( '_transient_', '', $option_name ) );
+			$query = $wpdb->get_col( $wpdb->prepare( "SELECT option_name FROM $wpdb->options WHERE option_name LIKE(%s)", '\_transient\_album\_medialib\_%' ) );
+			if ( $query ) {
+				foreach ( $query as $option_name ) {
+					// var_dump($option_name);
+					$path = str_replace( '_transient_album_medialib_', '', $option_name );
+					// var_dump($path);
+					if ( strpos( $image_path, $path ) !== false ) {
+						delete_transient( str_replace( '_transient_', '', $option_name ) );
+					}
 				}
 			}
 		}
 	}
 	add_action( 'add_attachment', 'album_medialib_delete_transient', 10, 1 );
 	add_action( 'delete_attachment', 'album_medialib_delete_transient' );
-
-	define( 'ALBUM_MEDIALIB_FILE', __FILE__ ); // /pfad/wp-content/plugins/album-media-library/album-media-library.php .
-	define( 'ALBUM_MEDIALIB_DIR', plugin_dir_path( __FILE__ ) ); // /pfad/wp-content/plugins/album-media-library/ .
-	// define( 'ALBUM_MEDIALIB_URL', WP_PLUGIN_URL . '/' . basename( ALBUM_MEDIALIB_DIR ) ); // https://url/wp-content/plugins/album-media-library/ .
-	define( 'ALBUM_MEDIALIB_NAME', basename( ALBUM_MEDIALIB_DIR ) ); // album-media-library
 
 	function album_medialib_action_links( $actions ) {
 		$actions[] = '<a href="' . esc_url( get_admin_url( null, 'upload.php?page=' . ALBUM_MEDIALIB_NAME ) ) . '">' . esc_html__( 'Settings', 'album-media-library' ) . '</a>';
