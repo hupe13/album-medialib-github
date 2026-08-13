@@ -1,10 +1,23 @@
-# Album of photos from a folder in the Media Library Github
+=== Album of photos from a folder in the Media Library Github ===
 
-## Description
+Contributors: hupe13
+Tags: albums, Media Library
+Tested up to: 7.1
+Stable tag: 260813
+Requires at least: 6.2
+Requires PHP: 8.2
+License: GPLv2 or later
 
 Organize your photos in folders, select a path and display these photos with any gallery shortcode.
 
-## Howto
+== Description ==
+
+Organize your photos in folders, select a path and display these photos with any gallery shortcode.
+
+To get updates with the [Plugin Update Checker](https://github.com/YahnisElsts/plugin-update-checker) please
+install [ghu-update-puc](https://github.com/hupe13/ghu-update-puc).
+
+== Howto ==
 
 * Organize your photos in directories. Store the photos for each album in a subdirectory in the WordPress upload directory. You can use a <a href="https://wordpress.org/plugins/search/media+library+folder/">plugin</a> to do this.
 * Import these photos to the Media Library. Maybe your plugin has this function too.
@@ -14,13 +27,16 @@ Organize your photos in folders, select a path and display these photos with any
 * Write your shortcode as usual, omit the list option and use an extra option `path`.
 * `path` is a substring of the directory path, for example `holidays25/day1`.
 
-## Installation
+== Installation ==
 
 * Install the plugin in the usual way.
 * Go to Settings - Media - Media Album - and get documentation and settings options.
 
-Please install <a href="https://github.com/hupe13/ghu-update-puc">ghu-update-puc</a> to get updates and keep an eye on this repository in case I've made any mistakes.
+== Changelog ==
 
-## Changelog
+### 260813 / 1.3
+
+* Tested up to WordPress 7.1
+* readme
 
 see <a href="https://github.com/hupe13/album-medialib-github/blob/main/CHANGELOG.md">Changelog</a>
