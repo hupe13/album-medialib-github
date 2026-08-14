@@ -14,9 +14,6 @@ Organize your photos in folders, select a path and display these photos with any
 
 Organize your photos in folders, select a path and display these photos with any gallery shortcode.
 
-To get updates with the [Plugin Update Checker](https://github.com/YahnisElsts/plugin-update-checker) please
-install [ghu-update-puc](https://github.com/hupe13/ghu-update-puc).
-
 == Howto ==
 
 * Organize your photos in directories. Store the photos for each album in a subdirectory in the WordPress upload directory. You can use a <a href="https://wordpress.org/plugins/search/media+library+folder/">plugin</a> to do this.
@@ -31,6 +28,9 @@ install [ghu-update-puc](https://github.com/hupe13/ghu-update-puc).
 
 * Install the plugin in the usual way.
 * Go to Settings - Media - Media Album - and get documentation and settings options.
+
+To get updates with the [Plugin Update Checker](https://github.com/YahnisElsts/plugin-update-checker) please
+install [ghu-update-puc](https://github.com/hupe13/ghu-update-puc).
 
 == Changelog ==
 
