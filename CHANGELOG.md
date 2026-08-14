@@ -1,4 +1,4 @@
-### 1.3 / 260813
+### 1.3 / 260814
 
 * Tested up to WordPress 7.1
 * readme
