@@ -1,0 +1,7 @@
+parameters:
+  level: 8
+  bootstrapFiles:
+  - album-media-library.php
+  ignoreErrors:
+    - identifier: missingType.return      #6
+    - identifier: missingType.parameter   #6
