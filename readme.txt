@@ -37,6 +37,5 @@ install [ghu-update-puc](https://github.com/hupe13/ghu-update-puc).
 ### 260813 / 1.3
 
 * Tested up to WordPress 7.1
-* readme
 
 see <a href="https://github.com/hupe13/album-medialib-github/blob/main/CHANGELOG.md">Changelog</a>
