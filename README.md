@@ -2,7 +2,7 @@
 
 ## Description
 
-Organize your photos in folders, select a path and display these photos with any gallery shortcode.
+Display photos from the media library - which are organized into folders - using any gallery shortcode.
 
 ## Howto
 

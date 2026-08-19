@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Album of photos from a folder in the Media Library Github
  * Plugin URI:        https://leafext.de/hp/categories/medialib/
- * Description:       Organize your photos in folders, select a path and display these photos with any gallery shortcode.
+ * Description:       Display photos from the media library - which are organized into folders - using any gallery shortcode.
  * Version:           260813
  * Requires at least: 6.2
  * Requires PHP:      8.2

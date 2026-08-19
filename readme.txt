@@ -8,11 +8,11 @@ Requires at least: 6.2
 Requires PHP: 8.2
 License: GPLv2 or later
 
-Organize your photos in folders, select a path and display these photos with any gallery shortcode.
+Display photos from the media library - which are organized into folders - using any gallery shortcode.
 
 == Description ==
 
-Organize your photos in folders, select a path and display these photos with any gallery shortcode.
+Display photos from the media library - which are organized into folders - using any gallery shortcode.
 
 == Howto ==
 
