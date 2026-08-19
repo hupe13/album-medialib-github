@@ -2,7 +2,7 @@
 
 ## Description
 
-Display photos from the media library - which are organized into folders - using any gallery shortcode.
+Display photos from the media library - which are organized into folders - as an album using any gallery shortcode.
 
 ## Howto
 
